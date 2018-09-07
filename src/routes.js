@@ -1,6 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 import React from 'react';
-import Auth from './components/Auth';
+import Auth from './components/Auth/Auth';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 import Search from './components/Search';
