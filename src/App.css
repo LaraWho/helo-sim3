@@ -4,3 +4,55 @@
 
 }
 
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  letter-spacing: 0.5px;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+button:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+
+}
+
+input {
+  /* box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2); */
+  border: 1px solid #ccc3c3;
+  height: 22px;
+  margin: 10px;
+}
+
+select:focus {
+  outline: none;
+
+}
+
+select {
+  background-color: #f2f2f2;
+  border-radius: 1px;
+  font-family: 'Open Sans', sans-serif;
+  border: 1px solid #ccc3c3;
+
+  /* box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2); */
+  height: 26px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 18px;
+  text-align: center;
+}
+
+option {
+  font-family: 'Open Sans', sans-serif;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
+
+}

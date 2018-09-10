@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './styling.css';
+import './search.css';
 import homeLogo from './home.png';
-import searchSign from './search.png'
+import searchSign from './search.png';
+import { Link } from 'react-router-dom';
+import Media from "react-media";
+
 
 export default class Search extends Component {
 
@@ -9,13 +13,26 @@ export default class Search extends Component {
         return(
 
             <div>
-                 <div className="nav-bar">
-                    <h1>Helo</h1>
-                    <img src={homeLogo} alt="Home"/>
-                    <img src={searchSign} alt="Search"/>
-                    <h2>Search</h2>
-                    <h2>Logout</h2>
-                </div>
+                 <Media query="(min-width: 920px)">
+                            {matches =>
+                            matches ? (
+                            <div className="nav-bar">
+                                <h1 className="helo-header">Helo</h1>
+                                <Link to="/Dashboard"><img src={homeLogo} alt="Home" className="home-logo"/></Link>
+                                <Link to="/Search"><img src={searchSign} alt="Search" className="search-logo"/></Link>
+                                <h2 className="page-name">Profile</h2>
+                                <Link to="/"><h2 className="logout">Logout</h2></Link>
+                            </div>
+                                
+                            ) : (
+                            <div className="nav-bar">
+                                <Link to="/Dashboard"><h1 className="helo-header">Helo</h1></Link>
+                                <Link to="/Search"><img src={searchSign} alt="Search" className="search-logo"/></Link>
+                                <h2 className="page-name">Profile</h2>
+                                <Link to="/"><h2 className="logout">Logout</h2></Link>
+                            </div>
+                            )}
+                        </Media>
 
                 <div>
                     <select name="Attributes">
@@ -30,8 +47,8 @@ export default class Search extends Component {
                         <option value="birthYear">Birth Year</option>
                     </select>
                     <input type="text"/>
-                    <button>Search</button>
-                    <button>Reset</button>
+                    <button className="search-btn">Search</button>
+                    <button className="reset-btn">Reset</button>
                 </div>
 
             </div>

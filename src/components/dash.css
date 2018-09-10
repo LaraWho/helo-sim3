@@ -1,0 +1,12 @@
+.edit-btn {
+    margin: 20px;
+    border-radius: 1px;
+    background: radial-gradient(circle at 50% 0, #fff, #f1eceb);
+    border: 1px solid #ccc3c3;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+@media all and (min-width: 920px) {
+
+}

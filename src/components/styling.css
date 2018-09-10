@@ -13,5 +13,88 @@ option {
 .nav-bar {
     display: flex;
     justify-content: center;
+    height: 45px;
+    background: linear-gradient(97deg, #FF7A6E, #FF9770);
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.1), 0 6px 6px 0 rgba(0,0,0,0.2);
+    color: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+.helo-header {
+    margin: 1px;
+    text-decoration: none;
+    color: #f2f2f2;
+    /* margin-left: 5px; */
+
+}
+
+.page-name {
+    font-weight: 400;
+    margin: auto;
+    margin-left: 14px;
+}
+
+.logout {
+    font-weight: 400;
+    margin: 12px 4px;
+    /* margin-right: 5px; */
+    font-size: 14px;
+    color: #f2f2f2;
+    
+
+}
+
+.search-logo {
+    height: 18px;
+    width: auto;
+    margin: 16px 8px;
+
+}
+
+
+
+@media all and (min-width: 920px) {
+
+    .nav-bar {
+        display: flex;
+        justify-content: center;
+        height: 60px;
+        letter-spacing: 1px;
+    }
+    
+    .helo-header {
+        margin: 8px;
+        margin-left: 60px;
+    
+    }
+    
+    .page-name {
+        font-weight: 400;
+        margin: auto;
+    }
+    
+    .logout {
+        font-weight: 400;
+        margin: 14px;
+        margin-right: 60px;
+        margin-left: 80px;
+        font-size: 18px;
+    }
+    
+    .home-logo {
+        height: 25px;
+        width: auto;
+        margin: 15px 6px;
+    }
+    
+    .search-logo {
+        height: 25px;
+        width: auto;
+        margin: 16px 6px;
+        margin-right: 0px;
+    
+    }
+
 
 }
