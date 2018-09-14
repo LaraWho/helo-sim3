@@ -13,6 +13,7 @@ button {
   border: none;
   letter-spacing: 0.5px;
   font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
 
 }
 
@@ -30,6 +31,8 @@ input {
   border: 1px solid #ccc3c3;
   height: 22px;
   margin: 10px;
+  font-size: 14px;
+
 }
 
 select:focus {

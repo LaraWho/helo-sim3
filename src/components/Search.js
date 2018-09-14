@@ -20,7 +20,7 @@ export default class Search extends Component {
                                 <h1 className="helo-header">Helo</h1>
                                 <Link to="/Dashboard"><img src={homeLogo} alt="Home" className="home-logo"/></Link>
                                 <Link to="/Search"><img src={searchSign} alt="Search" className="search-logo"/></Link>
-                                <h2 className="page-name">Profile</h2>
+                                <h2 className="page-name">Search</h2>
                                 <Link to="/"><h2 className="logout">Logout</h2></Link>
                             </div>
                                 
@@ -28,7 +28,7 @@ export default class Search extends Component {
                             <div className="nav-bar">
                                 <Link to="/Dashboard"><h1 className="helo-header">Helo</h1></Link>
                                 <Link to="/Search"><img src={searchSign} alt="Search" className="search-logo"/></Link>
-                                <h2 className="page-name">Profile</h2>
+                                <h2 className="page-name">Search</h2>
                                 <Link to="/"><h2 className="logout">Logout</h2></Link>
                             </div>
                             )}

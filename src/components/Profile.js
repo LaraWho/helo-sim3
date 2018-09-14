@@ -49,6 +49,7 @@ export default class Profile extends Component {
                 </div>
                 <div>
                     <p>Gender</p>
+                    {/* put value on this select tag, so it shows the state value which the user selected */}
                     <select name="gender">
                         <option value="female">Female</option>
                         <option value="male">Male</option>

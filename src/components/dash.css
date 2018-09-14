@@ -4,9 +4,87 @@
     background: radial-gradient(circle at 50% 0, #fff, #f1eceb);
     border: 1px solid #ccc3c3;
     font-family: 'Open Sans', sans-serif;
+    padding: 6px 18px;
 
 }
 
+.dash-content {
+    font-size: 14px;
+}
+
+.profile-box {
+    display: flex;
+    
+}
+
+.user-img {
+    height: 50px;
+    width: 50px;
+    border: 1px solid #ccc3c3;
+    margin: 10px;
+}
+
+.dash-name {
+    font-weight: 600;
+}
+
+.welcome-msg {
+    height: 50px;
+    width: 30%;
+    font-size: 12px;
+    border: 1px solid #ccc3c3;
+     margin-top: 30px;
+     padding-top: 40px;
+}
+
+.user-info {
+    border: 1px solid #ccc3c3;
+    height: 50px;
+}
+
 @media all and (min-width: 920px) {
+    
+    .edit-btn {
+        font-size: 14px;
+        margin-top: 95px;
+    }
+    
+.dash-content {
+    display: flex;
+    flex-direction: column;
+}
+    
+.profile-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+}
+
+.user-img {
+    height: 100px;
+    width: 100px;
+    border: 1px solid #ccc3c3;
+
+}
+
+.dash-name {
+    font-weight: 600;
+}
+
+.welcome-msg {
+    height: 100px;
+    font-size: 14px;
+    width: 30%;
+    border: 1px solid #ccc3c3;
+    padding-top: 40px;
+    margin: 15px;
+}
+
+.user-info {
+    display: flex;
+    height: 141px;
+}
 
 }

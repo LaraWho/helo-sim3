@@ -1,3 +1,5 @@
+
+
 .search-btn {
     margin: 10px;
     border-radius: 1px;
@@ -22,4 +24,13 @@
 
 @media all and (min-width: 920px) {
 
+
+    .reset-btn {
+    font-size: 14px;
+
+    }
+    .search-btn {
+    font-size: 14px;
+
+    }
 }

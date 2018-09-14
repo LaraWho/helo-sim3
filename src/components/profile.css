@@ -10,6 +10,12 @@
     
 }
 
+
 @media all and (min-width: 920px) {
+
+.update-btn {
+    font-size: 14px;
+
+}
 
 }
