@@ -5,9 +5,35 @@ import { Link } from 'react-router-dom';
 import homeLogo from './home.png';
 import searchSign from './search.png';
 import Media from "react-media";
+import axios from 'axios';
 
 
 export default class Dashboard extends Component {
+    constructor(props) {
+        super(props)
+            
+            this.state = {
+                users: []
+            }
+
+            this.getUsers = this.getUsers.bind(this);
+        }
+
+    componentDidMount(){
+        this.getUsers()
+    }
+
+        getUsers() {
+            axios.get('/friend/list')
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    users: res.data
+                    }) 
+                }).catch((err) => {
+                    console.log(err)
+                    })
+                }
 
     render() {
         return(
@@ -62,6 +88,7 @@ export default class Dashboard extends Component {
                 </div>
 
                 <div>
+
                     <p>No Recommendations!</p>
                 </div>
             </div>
