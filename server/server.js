@@ -33,7 +33,7 @@ const express = require('express')
 
 
     //Friend endpoints
-    app.get('/friend/list', friend_cntrl.getFriends);
+    app.get('/api/friend/list', friend_cntrl.getUsers);
     // app.post('/friend/add', friend_cntrl.addFriend);
     // app.post('/friend/remove', friend_cntrl.removeFriend);
 
@@ -45,24 +45,24 @@ const express = require('express')
     // app.patch('/user/patch/:id', user_cntrl.usersList);
     // app.get('/user/list', user_cntrl.getUsers);
     // app.get('/user/search', user_cntrl.searchUsers);
-
-    //to disable auth0 during production
-    app.use((req, res, next) => {
-    if(ENVIRONMENT === 'dev') {
-        req.app.get('db').set_data().then(userData => {
-            req.session.user = userData[0]
-            console.log(req.session.user)
-        })
-    } else {
-        next();
-    }
-    })
-
+    
+    
     //login endpoints
     app.get('/auth/callback', auth_cntrl.login);
     app.get('/api/user', auth_cntrl.getUser);
     app.get('/logout', auth_cntrl.logout);
 
+    //to disable auth0 during production
+    // app.use((req, res, next) => {
+    // if(ENVIRONMENT === 'dev') {
+    //     req.app.get('db').set_data().then(userData => {
+    //         req.session.user = userData[0]
+    //         console.log(req.session.user)
+    //     })    
+    // } else {
+    //     next();
+    // }    
+    // })    
 
     app.listen(4567, ( ) => {
         console.log(`Listening on port: 4567`)

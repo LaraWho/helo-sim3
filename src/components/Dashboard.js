@@ -16,27 +16,37 @@ export default class Dashboard extends Component {
                 users: []
             }
 
-            this.getUsers = this.getUsers.bind(this);
+    
         }
 
     componentDidMount(){
-        this.getUsers()
+        axios.get('/api/friend/list')
+        .then(res => {
+            console.log('res.data:', res.data)
+            this.setState({
+                users: res.data
+                }) 
+            }).catch((err) => {
+                console.log(err)
+            })
     }
 
-        getUsers() {
-            axios.get('/friend/list')
-            .then(res => {
-                console.log(res)
-                this.setState({
-                    users: res.data
-                    }) 
-                }).catch((err) => {
-                    console.log(err)
-                    })
-                }
 
     render() {
-        console.log(this.state.users)
+        console.log('state.users:', this.state.users)
+
+
+        let mappedUsers = this.state.users.map((e, i) => {
+            return(
+                <div key={ i } className="user-list"> 
+                    <img src={e.user_img} alt={e.user_img}/>
+                    <h2>{e.first_name}</h2>
+                    <h2>{e.last_name}</h2>
+                </div>
+            )
+        })
+
+
         return(
             <div>
                <Media query="(min-width: 920px)">
@@ -61,6 +71,7 @@ export default class Dashboard extends Component {
                         </Media>
             
             <div className="dash-content">
+            
                 <div className="profile-box">
                     <div className="user-info">
                         <div className="user-img"></div>
@@ -87,14 +98,13 @@ export default class Dashboard extends Component {
                         <option value="birthYear">Birth Year</option>
                     </select>
                 </div>
+            </div>
 
                 <div>
-
-                    <p>No Recommendations!</p>
+                   { mappedUsers }
                 </div>
-            </div>
+        </div>
 
-            </div>
         )
     }
 }

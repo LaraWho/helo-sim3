@@ -1,13 +1,12 @@
 module.exports = {
 
-        getFriends: (req, res) => {
+        getUsers: (req, res) => {
         const dbInstance = req.app.get('db')
-        let { user_id } = req.session.user
-            console.log(req.session.user)
-        dbInstance.get_users([user_id])
+        let info = req.session.user.user_id
+            console.log(1111111111, info)
+        dbInstance.get_users([info])
         .then(users => {
             console.log(users)
-
             res.status(200).send(users)
             
         }).catch( err => {
