@@ -26,7 +26,7 @@ export default class Dashboard extends Component {
         getUsers() {
             axios.get('/friend/list')
             .then(res => {
-                console.log(res.data)
+                console.log(res)
                 this.setState({
                     users: res.data
                     }) 
@@ -36,6 +36,7 @@ export default class Dashboard extends Component {
                 }
 
     render() {
+        console.log(this.state.users)
         return(
             <div>
                <Media query="(min-width: 920px)">
@@ -63,7 +64,7 @@ export default class Dashboard extends Component {
                 <div className="profile-box">
                     <div className="user-info">
                         <div className="user-img"></div>
-                        <h1 className="dash-name">James</h1>
+                        <h1 className="dash-name">{this.state.users.first_name}</h1>
                         <Link to="/Profile"><button className="edit-btn">Edit Profile</button></Link>
                     </div>
                     <p className="welcome-msg">Welcome to Helo! Find recommended friends based on your 
