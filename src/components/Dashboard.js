@@ -16,10 +16,10 @@ export default class Dashboard extends Component {
                 users: [],
                 currentUser: [],
                 filteredUsers: [],
-                showFilter: false
+                showFilter: false,
+                select: ''
             }
 
-    
         }
 
     componentDidMount(){
@@ -49,14 +49,21 @@ export default class Dashboard extends Component {
         })
     }
 
+    updateInfo = (val) => {
+        this.setState({
+            select: val
+        },
+        this.filterUsers
+        )
+    }
+
+
     filterUsers = () => {
         this.setState({
                 showFilter: true,
-                filteredUsers: this.state.users.filter(response => {
-                    console.table(response)
-                    return response 
-
-            })
+                filteredUsers: this.state.users.filter(el => {
+                    return el[this.state.select] === this.state.currentUser[this.state.select]
+                })
         }) 
     }
 
@@ -69,7 +76,6 @@ export default class Dashboard extends Component {
         } else {
             newUserArray = this.state.filteredUsers
         }
-
 
         let mappedUsers = newUserArray.map((e, i) => {
             return(
@@ -128,30 +134,31 @@ export default class Dashboard extends Component {
 
                 <div>
                     <h1>Recommended Friends</h1>
-                    <p>Sorted by </p>
-                    <select name="Attributes" onChange={this.filterUsers}>
-                        <option value="firstName">First Name</option>
-                        <option value="lastName">Last Name</option>
+                    <p>Sort by users matching my: </p>
+                    <select value={this.state.select} onChange={e => this.updateInfo(e.target.value)}>
+                        <option value="select">Attributes...</option>
+                        <option value="first_name">First Name</option>
+                        <option value="last_name">Last Name</option>
                         <option value="gender">Gender</option>
-                        <option value="hairColour">Hair Colour</option>
-                        <option value="eyeColour">Eye Colour</option>
+                        <option value="hair_colour">Hair Colour</option>
+                        <option value="eye_colour">Eye Colour</option>
                         <option value="hobby">Hobby</option>
-                        <option value="birthDay">Birth Day</option>
-                        <option value="birthMonth">Birth Month</option>
-                        <option value="birthYear">Birth Year</option>
+                        <option value="birth_day">Birth Day</option>
+                        <option value="birth_month">Birth Month</option>
+                        <option value="birth_year">Birth Year</option>
                     </select>
                 </div>
             </div>
 
                 {
-                    !this.state.users[0] ?
+                    !mappedUsers[0] ?
 
-                    <p>No recommendations</p>
+                    <p>Sorry, no matches :-(</p>
 
                     :
 
                     <div>
-                    { mappedUsers }
+                        { mappedUsers }
                     </div>
 
 
