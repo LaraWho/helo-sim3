@@ -13,16 +13,23 @@ export default class Dashboard extends Component {
         super(props)
             
             this.state = {
-                users: []
+                users: [],
+                currentUser: [],
+                filteredUsers: [],
+                showFilter: false
             }
 
     
         }
 
     componentDidMount(){
+        this.getUsers()
+        this.getCurrentUser()
+    }
+    
+    getUsers = () => {
         axios.get('/api/friend/list')
         .then(res => {
-            console.log('res.data:', res.data)
             this.setState({
                 users: res.data
                 }) 
@@ -31,17 +38,48 @@ export default class Dashboard extends Component {
             })
     }
 
+    getCurrentUser = () => {
+        axios.get('/api/dash/user')
+        .then(res => {
+            this.setState({
+                currentUser: res.data
+                }) 
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+    filterUsers = () => {
+        this.setState({
+                showFilter: true,
+                filteredUsers: this.state.users.filter(response => {
+                    console.table(response)
+                    return response 
+
+            })
+        }) 
+    }
+
 
     render() {
-        console.log('state.users:', this.state.users)
+        let newUserArray = []
+
+        if(!this.state.showFilter) {
+            newUserArray = this.state.users
+        } else {
+            newUserArray = this.state.filteredUsers
+        }
 
 
-        let mappedUsers = this.state.users.map((e, i) => {
+        let mappedUsers = newUserArray.map((e, i) => {
             return(
                 <div key={ i } className="user-list"> 
                     <img src={e.user_img} alt={e.user_img}/>
-                    <h2>{e.first_name}</h2>
-                    <h2>{e.last_name}</h2>
+                    <h2>
+                        {e.first_name} <br/>
+                        {e.last_name}
+                    </h2>
+                    <button>Add Friend</button>
                 </div>
             )
         })
@@ -74,8 +112,13 @@ export default class Dashboard extends Component {
             
                 <div className="profile-box">
                     <div className="user-info">
-                        <div className="user-img"></div>
-                        <h1 className="dash-name">{this.state.users.first_name}</h1>
+                        <img className="user-img" 
+                            src={this.state.currentUser.user_img} 
+                            alt={this.state.currentUser.first_name}/>
+                        <h1 className="dash-name">
+                            {this.state.currentUser.first_name} <br/>
+                            {this.state.currentUser.last_name}
+                        </h1>
                         <Link to="/Profile"><button className="edit-btn">Edit Profile</button></Link>
                     </div>
                     <p className="welcome-msg">Welcome to Helo! Find recommended friends based on your 
@@ -86,7 +129,7 @@ export default class Dashboard extends Component {
                 <div>
                     <h1>Recommended Friends</h1>
                     <p>Sorted by </p>
-                    <select name="Attributes">
+                    <select name="Attributes" onChange={this.filterUsers}>
                         <option value="firstName">First Name</option>
                         <option value="lastName">Last Name</option>
                         <option value="gender">Gender</option>
@@ -100,9 +143,21 @@ export default class Dashboard extends Component {
                 </div>
             </div>
 
-                <div>
-                   { mappedUsers }
-                </div>
+                {
+                    !this.state.users[0] ?
+
+                    <p>No recommendations</p>
+
+                    :
+
+                    <div>
+                    { mappedUsers }
+                    </div>
+
+
+                }
+
+                
         </div>
 
         )
