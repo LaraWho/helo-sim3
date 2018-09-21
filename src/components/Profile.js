@@ -108,12 +108,14 @@ export default class Profile extends Component {
     updateAll = () => {
         let { first_name, last_name, gender, hair_colour, eye_colour, hobby, birth_day, birth_month, birth_year } = this.state
           sweetie({
-              title: 'Tell me your Birthday!',
+              title: 'Are you sure you want to make changes?',
+              text: 'Also, please fill in your birthday',
               type: 'warning',
               showCancelButton: true,
-              confirmButtonColor: '#333',
+              confirmButtonColor: 'green',
               cancelButtonColor: 'red',
-              confirmButtonText: 'Update anyway!'
+              cancelButtonText: 'Go back!',
+              confirmButtonText: 'Update!'
           }).then((result) => {
               if(result.value) {
                 axios.patch('/api/user/update', {first_name, last_name, gender, hair_colour, eye_colour, hobby, birth_day, birth_month, birth_year })
@@ -130,14 +132,20 @@ export default class Profile extends Component {
         
         }
 
-
-
-
-    // clearChanges() {
-    //     this.setState({
-
-    //     })
-    // }
+    clearChanges = () => {
+        sweetie({
+            title: 'Are you sure?',
+            text: 'Do you really want to cancel your changes?',
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'No!',
+            confirmButtonText: 'Yes!'
+        }).then((result) => {
+            this.getUser()
+        })
+    }
 
     render() {
         return(
@@ -177,12 +185,12 @@ export default class Profile extends Component {
 
                 <div>
                     <p>First Name</p>
-                    <input type="text" onChange={this.updateFirst}
+                    <input type="text" value={this.state.first_name} onChange={this.updateFirst}
                     placeholder="Type here to update..."/>
                 </div>
                 <div>
                     <p>Last Name</p>
-                    <input type="text" onChange={this.updateLast}
+                    <input type="text" value={this.state.last_name} onChange={this.updateLast}
                     placeholder="Type here to update..."/>
                 </div>
                 <div>
