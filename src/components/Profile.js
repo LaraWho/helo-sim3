@@ -6,6 +6,7 @@ import searchSign from './search.png';
 import { Link } from 'react-router-dom';
 import Media from "react-media";
 import axios from 'axios';
+import sweetie from 'sweetalert2';
 
 
 export default class Profile extends Component {
@@ -13,71 +14,130 @@ export default class Profile extends Component {
         super(props)
 
         this.state = {
-            input: '',
-            currentUser: {},
+            currentUser: [],
             first_name: '',
             last_name: '',
             gender: '',
-            // hair_colour: '',
+            hair_colour: '',
+            eye_colour: '',
+            hobby: '',
+            birth_day: '',
+            birth_month: '',
+            birth_year: ''
         }
     }
 
     componentDidMount() {
+        this.getUser()
+    }
+
+    getUser = () => {
         axios.get('/api/dash/user')
         .then(res => {
             this.setState({
-                currentUser: res.data
+                currentUser: res.data,
+                first_name: res.data.first_name,
+                last_name: res.data.last_name,
+                gender: res.data.gender,
+                hair_colour: res.data.hair_colour,
+                eye_colour: res.data.eye_colour,
+                hobby: res.data.hobby,
+                birth_day: res.data.birth_day,
+                birth_month: res.data.birth_month,
+                birth_year: res.data.birth_year
                 }) 
         }).catch((err) => {
             console.log(err)
         })
     }
 
-
-    updateFirst = (value) => {
+    updateFirst = (e) => {
         this.setState({
-            first_name: value
+            first_name: e.target.value
         })
     }
 
-    updateLast = (value) => {
+    updateLast = (e) => {
         this.setState({
-            last_name: value
+            last_name: e.target.value
         })
     }
 
-    updateGender = (value) => {
+    updateGender = (e) => {
         this.setState({
-            gender: value
+            gender: e.target.value
         })
     }
 
-    updateAll = (val) => {
-        let { ...currentUser } = this.state
-        axios.put('/api/user/update', {...currentUser})
-        .then(res => {
-            let newState = Object.assign({}, this.state.currentUser)
-            newState.first_name = this.state.first_name
-            newState.last_name = this.state.last_name
-            newState.gender = this.state.gender
-
-            
-
-            console.log('newState: ', newState)
-            console.log('currentUser: ', currentUser)
-
-
-            this.setState({
-                currentUser: newState
-            })
-        })
-    }
-
-    clearChanges() {
+    updateHair = (e) => {
         this.setState({
-
+            hair_colour: e.target.value
         })
     }
+
+    updateEye = (e) => {
+        this.setState({
+            eye_colour: e.target.value
+        })
+    }
+
+    updateHobby = (e) => {
+        this.setState({
+            hobby: e.target.value
+        })
+    }
+
+    updateDay = (e) => {
+        this.setState({
+            birth_day: e.target.value
+        })
+    }
+
+    updateMonth = (e) => {
+        this.setState({
+            birth_month: e.target.value
+        })
+    }
+
+    updateYear = (e) => {
+        this.setState({
+            birth_year: e.target.value
+        })
+    }
+
+    updateAll = () => {
+        let { first_name, last_name, gender, hair_colour, eye_colour, hobby, birth_day, birth_month, birth_year } = this.state
+          sweetie({
+              title: 'Tell me your Birthday!',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#333',
+              cancelButtonColor: 'red',
+              confirmButtonText: 'Update anyway!'
+          }).then((result) => {
+              if(result.value) {
+                axios.patch('/api/user/update', {first_name, last_name, gender, hair_colour, eye_colour, hobby, birth_day, birth_month, birth_year })
+                        .then(res => {
+                            this.getUser()
+                        })
+                    sweetie(
+                        'Updated!',
+                        'Your profile was updated',
+                        'success'
+                    )
+              }
+          })
+        
+        }
+
+
+
+
+    // clearChanges() {
+    //     this.setState({
+
+    //     })
+    // }
 
     render() {
         return(
@@ -117,16 +177,19 @@ export default class Profile extends Component {
 
                 <div>
                     <p>First Name</p>
-                    <input type="text" value={this.state.first_name} onChange={e => this.updateFirst(e.target.value)}/>
+                    <input type="text" onChange={this.updateFirst}
+                    placeholder="Type here to update..."/>
                 </div>
                 <div>
                     <p>Last Name</p>
-                    <input type="text" onChange={e => this.updateLast(e.target.value)}/>
+                    <input type="text" onChange={this.updateLast}
+                    placeholder="Type here to update..."/>
                 </div>
                 <div>
                     <p>Gender</p>
                     {/* put value on this select tag, so it shows the state value which the user selected */}
-                    <select value={this.state.currentUser.gender} onChange={e => this.updateGender(e.target.value)}>
+                    <select value={this.state.gender} onChange={this.updateGender}>
+                        <option value={this.state.select}>Select...</option>                                
                         <option value="Female">Female</option>
                         <option value="Male">Male</option>
                         <option value="Rainbow">Rainbow</option>
@@ -134,36 +197,40 @@ export default class Profile extends Component {
                 </div>
                 <div>
                     <p>Hair Colour</p>
-                    <select value={this.state.currentUser.hair_colour} onChange={e => this.updateHair(e.target.value)}>
-                        <option value="brown">Brown</option>
-                        <option value="blonde">Blonde</option>
-                        <option value="red">Red</option>
-                        <option value="rainbow">Rainbow</option>
+                    <select value={this.state.hair_colour} onChange={this.updateHair}>
+                        <option value="select">Select...</option>
+                        <option value="Brown">Brown</option>
+                        <option value="Blonde">Blonde</option>
+                        <option value="Red">Red</option>
+                        <option value="Rainbow">Rainbow</option>
                     </select>
                 </div>
                 <div>
                     <p>Eye Colour</p>
-                    <select value={this.state.currentUser.eye_colour} onChange={e => this.updateEye(e.target.value)}>
-                        <option value="hazel">Hazel</option>
-                        <option value="brown">Brown</option>
-                        <option value="blue">Blue</option>
-                        <option value="green">Green</option>
+                    <select value={this.state.eye_colour} onChange={this.updateEye}>
+                        <option value="select">Select...</option>
+                        <option value="Hazel">Hazel</option>
+                        <option value="Brown">Brown</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Green">Green</option>
                     </select>
                 </div>
                 <div>
                     <p>Hobby</p>
-                    <select value={this.state.currentUser.hobby} onChange={e => this.updateHobby(e.target.value)}>
-                        <option value="reading">Reading</option>
-                        <option value="photography">Photography</option>
-                        <option value="coding">Coding</option>
-                        <option value="hiking">Hiking</option>
-                        <option value="cycling">Cycling</option>
+                    <select value={this.state.hobby} onChange={this.updateHobby}>
+                        <option value="select">Select...</option>                                
+                        <option value="Reading">Reading</option>
+                        <option value="Photography">Photography</option>
+                        <option value="Coding">Coding</option>
+                        <option value="Hiking">Hiking</option>
+                        <option value="Cycling">Cycling</option>
                     </select>
                 </div>
                 <div>
                     <p>Birthday Day</p>
-                    <select value={this.state.currentUser.birth_day} onChange={e => this.updateDay(e.target.value)}>
-                        <option value="1"></option>
+                    <select value={this.state.birth_day} onChange={this.updateDay}>
+                        <option value="select">Select...</option>                        
+                        <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -199,7 +266,8 @@ export default class Profile extends Component {
                 </div>
                 <div>
                     <p>Birthday Month</p>
-                    <select value={this.state.currentUser.birth_month} onChange={e => this.updateMonth(e.target.value)}>
+                    <select value={this.state.birth_month} onChange={this.updateMonth}>
+                        <option value="select">Select...</option>
                         <option value="January">January</option>
                         <option value="February">February</option>
                         <option value="March">March</option>
@@ -218,7 +286,8 @@ export default class Profile extends Component {
 
                 <div>
                     <p>Birthday Year</p>
-                    <select value={this.state.currentUser.birth_year} onChange={e => this.updateYear(e.target.value)}>
+                    <select value={this.state.birth_year} onChange={this.updateYear}>
+                            <option value="select">Select...</option>
                             <option value="2013">2013</option>
                             <option value="2012">2012</option>
                             <option value="2011">2011</option>
@@ -310,4 +379,5 @@ export default class Profile extends Component {
         )
     }
 }
+
 
