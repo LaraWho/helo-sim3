@@ -5,9 +5,79 @@ import homeLogo from './home.png';
 import searchSign from './search.png';
 import { Link } from 'react-router-dom';
 import Media from "react-media";
+import axios from 'axios';
 
 
 export default class Profile extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            input: '',
+            currentUser: {},
+            first_name: '',
+            last_name: '',
+            gender: '',
+            // hair_colour: '',
+        }
+    }
+
+    componentDidMount() {
+        axios.get('/api/dash/user')
+        .then(res => {
+            this.setState({
+                currentUser: res.data
+                }) 
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+
+    updateFirst = (value) => {
+        this.setState({
+            first_name: value
+        })
+    }
+
+    updateLast = (value) => {
+        this.setState({
+            last_name: value
+        })
+    }
+
+    updateGender = (value) => {
+        this.setState({
+            gender: value
+        })
+    }
+
+    updateAll = (val) => {
+        let { ...currentUser } = this.state
+        axios.put('/api/user/update', {...currentUser})
+        .then(res => {
+            let newState = Object.assign({}, this.state.currentUser)
+            newState.first_name = this.state.first_name
+            newState.last_name = this.state.last_name
+            newState.gender = this.state.gender
+
+            
+
+            console.log('newState: ', newState)
+            console.log('currentUser: ', currentUser)
+
+
+            this.setState({
+                currentUser: newState
+            })
+        })
+    }
+
+    clearChanges() {
+        this.setState({
+
+        })
+    }
 
     render() {
         return(
@@ -34,31 +104,37 @@ export default class Profile extends Component {
                         </Media>
 
                 <div>
-                    <h1>James Lemire</h1>
-                    <button className="update-btn">Update</button>
-                    <button>Cancel</button>
+                        <img className="user-img" 
+                            src={this.state.currentUser.user_img} 
+                            alt={this.state.currentUser.first_name}/>
+                        <h1 className="profile-name">
+                            {this.state.currentUser.first_name} <br/>
+                            {this.state.currentUser.last_name}
+                        </h1>
+                    <button className="update-btn" onClick={this.updateAll}>Update</button>
+                    <button onClick={this.clearChanges}>Cancel</button>
                 </div>
 
                 <div>
                     <p>First Name</p>
-                    <input type="text"/>
+                    <input type="text" value={this.state.first_name} onChange={e => this.updateFirst(e.target.value)}/>
                 </div>
                 <div>
                     <p>Last Name</p>
-                    <input type="text"/>
+                    <input type="text" onChange={e => this.updateLast(e.target.value)}/>
                 </div>
                 <div>
                     <p>Gender</p>
                     {/* put value on this select tag, so it shows the state value which the user selected */}
-                    <select name="gender">
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                        <option value="rainbow">Rainbow</option>
+                    <select value={this.state.currentUser.gender} onChange={e => this.updateGender(e.target.value)}>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Rainbow">Rainbow</option>
                     </select>
                 </div>
                 <div>
                     <p>Hair Colour</p>
-                    <select name="hairColour">
+                    <select value={this.state.currentUser.hair_colour} onChange={e => this.updateHair(e.target.value)}>
                         <option value="brown">Brown</option>
                         <option value="blonde">Blonde</option>
                         <option value="red">Red</option>
@@ -67,7 +143,7 @@ export default class Profile extends Component {
                 </div>
                 <div>
                     <p>Eye Colour</p>
-                    <select name="eyeColour">
+                    <select value={this.state.currentUser.eye_colour} onChange={e => this.updateEye(e.target.value)}>
                         <option value="hazel">Hazel</option>
                         <option value="brown">Brown</option>
                         <option value="blue">Blue</option>
@@ -76,7 +152,7 @@ export default class Profile extends Component {
                 </div>
                 <div>
                     <p>Hobby</p>
-                    <select name="hobby">
+                    <select value={this.state.currentUser.hobby} onChange={e => this.updateHobby(e.target.value)}>
                         <option value="reading">Reading</option>
                         <option value="photography">Photography</option>
                         <option value="coding">Coding</option>
@@ -86,7 +162,7 @@ export default class Profile extends Component {
                 </div>
                 <div>
                     <p>Birthday Day</p>
-                    <select name="birthDay">
+                    <select value={this.state.currentUser.birth_day} onChange={e => this.updateDay(e.target.value)}>
                         <option value="1"></option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -123,26 +199,26 @@ export default class Profile extends Component {
                 </div>
                 <div>
                     <p>Birthday Month</p>
-                    <select name="birthMonth">
-                        <option value="january">January</option>
-                        <option value="february">February</option>
-                        <option value="march">March</option>
-                        <option value="april">April</option>
-                        <option value="may">May</option>
-                        <option value="june">June</option>
-                        <option value="july">July</option>
-                        <option value="august">August</option>
-                        <option value="september">September</option>
-                        <option value="october">October</option>
-                        <option value="november">November</option>
-                        <option value="december">December</option>
+                    <select value={this.state.currentUser.birth_month} onChange={e => this.updateMonth(e.target.value)}>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
 
                     </select>
                 </div>
 
                 <div>
                     <p>Birthday Year</p>
-                    <select name="birthYear">
+                    <select value={this.state.currentUser.birth_year} onChange={e => this.updateYear(e.target.value)}>
                             <option value="2013">2013</option>
                             <option value="2012">2012</option>
                             <option value="2011">2011</option>

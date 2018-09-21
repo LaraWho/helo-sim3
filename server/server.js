@@ -56,6 +56,7 @@ const express = require('express')
 
     //User Endpoints
     app.get('/api/dash/user', user_cntrl.getCurrentUser);
+    app.put('/api/user/update', user_cntrl.updateProfile);
     // app.patch('/user/patch/:id', user_cntrl.usersList);
     // app.get('/user/list', user_cntrl.getUsers);
     // app.get('/user/search', user_cntrl.searchUsers);
