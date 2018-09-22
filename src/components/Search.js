@@ -29,6 +29,7 @@ export default class Search extends Component {
     getAllUsers = () => {
         axios.get('/api/user/list')
         .then(res => {
+            console.log(res.data)
             this.setState({
                 allUsers: res.data
                 // first_name: res.data.first_name,
@@ -39,27 +40,54 @@ export default class Search extends Component {
         })
     }
 
-    handleInput = (e) => {
+    // searchUsers = () => {
+    //     let { first_name, last_name } = this.state.allUsers
+    //     axios.get('/api/user/search', {first_name, last_name})
+    //     .then(res => {
+    //         this.setState({
+    //             filteredUsers: res.data,
+    //             showFilter: true
+    //         })
+    //     }).catch((err) => {
+    //         console.log(err)
+    //     })
+    // }
+
+    updateSearch = (val) => {
         this.setState({
-            input: e.target.value
+            select: val
         })
     }
 
-    updateFilter = (val) => {
+    handleInputChange(value) {
         this.setState({
-            select: val
-        },
-        this.filterUsers
-        )
+            input: value
+        })
     }
+
+    // updateFilter = (val) => {
+    //     this.setState({
+    //         select: val
+    //     },
+    //     this.filterUsers
+    //     )
+    // }
 
     filterUsers = () => {
         this.setState({
                 showFilter: true,
                 filteredUsers: this.state.allUsers.filter(el => {
-                    return el[this.state.select] === this.state.input
+                    console.log(this.state.input)
+                    return el[this.state.select] === this.state.input  
+                    // el.last_name === this.state.input
                 })
         }) 
+    }
+
+    toggleFilter = () => {
+        this.setState({
+            showFilter: false
+        })
     }
 
     render() {
@@ -109,21 +137,18 @@ export default class Search extends Component {
                         </Media>
 
                 <div>
-                    <select value={this.state.select} onChange={e => this.updateFilter(e.target.value)}>
+                    <select value={this.state.select} onChange={e => this.updateSearch(e.target.value)}>
                         <option value="select">Select...</option>
-                        <option value="firstName">First Name</option>
-                        <option value="lastName">Last Name</option>
-                        {/* <option value="gender">Gender</option>
-                        <option value="hairColour">Hair Colour</option>
-                        <option value="eyeColour">Eye Colour</option>
-                        <option value="hobby">Hobby</option>
-                        <option value="birthDay">Birth Day</option>
-                        <option value="birthMonth">Birth Month</option>
-                        <option value="birthYear">Birth Year</option> */}
+                        <option value="first_name">First Name</option>
+                        <option value="last_name">Last Name</option>
                     </select>
-                    <input type="text" onChange={this.handleInput}/>
-                    <button onClick={this.updateFilter} className="search-btn">Search</button>
-                    <button className="reset-btn">Reset</button>
+
+                    <input type="text" value={this.state.input} onChange={(e) => this.handleInputChange(e.target.value)}/>
+
+                    <button onClick={this.filterUsers} className="search-btn">Search</button>
+
+                    <button onClick={this.toggleFilter} className="reset-btn">Reset</button>
+
                 </div>
 
 

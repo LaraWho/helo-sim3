@@ -59,7 +59,7 @@ const express = require('express')
     app.patch('/api/user/update', user_cntrl.updateProfile);
     // app.patch('/user/patch/:id', user_cntrl.usersList);
     app.get('/api/user/list', user_cntrl.getAllUsers);
-    // app.get('/user/search', user_cntrl.searchUsers);
+    app.get('/api/user/search', user_cntrl.searchUsers);
     
     
     //login endpoints
