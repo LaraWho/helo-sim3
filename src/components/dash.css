@@ -1,60 +1,78 @@
 .edit-btn {
-    display: flex;
-    margin: 5px;
     border-radius: 1px;
     background: radial-gradient(circle at 50% 0, #fff, #f1eceb);
     border: 1px solid #ccc3c3;
     font-family: 'Open Sans', sans-serif;
     padding: 6px 18px;
+    /* margin: 10px; */
+    margin-top: 15px;
+    margin-left: 20px;
 }
 
 .dash-content {
     font-size: 14px;
+    display: flex;
+    flex-direction: column; 
 }
 
 .profile-box {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    
 }
 
-.user-img {
-    height: 50px;
-    width: 50px;
+.current-user-img {
+    height: 55px;
+    width: auto;
     align-items: flex-start;
     border: 1px solid #ccc3c3;
     margin: 5px;
+    margin-left: 10px;
 }
 
 .dash-name {
     font-weight: 600;
     text-align: left;
-    margin-top: 0px;
     font-size: 14px;
 }
 
 p.welcome-msg {
-    height: 100px;
-    width: 45%;
+    height: 90px;
+    width: 80%;
+    padding: 6px;
     font-size: 12px;
     border: 1px solid #ccc3c3;
-    margin-top: 20px;
+    margin-top: 10px;
     overflow-y: scroll;
+    background-color: #ffffffe8;
+
 }
 .welcome-msg::-webkit-scrollbar { width: 0 !important }
 
 .user-info {
     display: flex;
-    height: 100px;
-    width: 30%;
-    margin-top: 10px;
+    height: 70px;
+    width: 80%;    
+    margin-top: 20px;
+    padding-top: 10px;
     border: 1px solid #ccc3c3;
+    padding: 5px;
+    background-color: #ffffff;
+
 }
 
-.user-list {
-    display: flex;
-    align-items: center;
-    width: 60%;
+.rec-friends-head {
+    font-size: 18px;
+}
+
+.rec-friends-p {
+    font-size: 14px;
+    margin: 5px;
+
+}
+.rec-friends-select {
+    margin: 5px;
 }
 
 @media all and (min-width: 920px) {
@@ -71,13 +89,12 @@ p.welcome-msg {
     
 .profile-box {
     display: flex;
-    align-items: center;
     justify-content: center;
     margin-top: 20px;
 
 }
 
-.user-img {
+.current-user-img {
     height: 100px;
     width: 100px;
     border: 1px solid #ccc3c3;
@@ -101,7 +118,8 @@ p.welcome-msg {
 
 .user-info {
     display: flex;
-    height: 142px;
+    height: 132px;
+    margin-top: 21px;
 }
 
 }

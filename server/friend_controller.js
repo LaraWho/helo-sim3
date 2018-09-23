@@ -33,12 +33,23 @@ module.exports = {
             console.log(err)
         })
 
+    },
+
+    removeFriend: (req, res) => {
+        const dbInstance = req.app.get('db');
+        const  {user_id}  = req.session.user;
+        const friend_id = req.params.id;
+
+            console.log('req.session.user is', info)
+            console.log('req.params.id is', friend_id)
+
+        dbInstance.remove_friend( [friend_id, user_id] )
+        .then(users => {
+            res.status(200).send(users) 
+        })
+        .catch( err => {
+            res.sendStatus(500)
+            console.log(err)
+        } )
     }
-
-    // removeFriend:
-
-    // recFriends:
-
-    // addRecFriend:
-    
 }

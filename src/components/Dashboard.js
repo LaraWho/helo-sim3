@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './styling.css';
+import './navStyle.css';
+import './commonStyles.css';
 import './dash.css';
 import { Link } from 'react-router-dom';
 import homeLogo from './home.png';
@@ -80,12 +81,12 @@ export default class Dashboard extends Component {
         let mappedUsers = newUserArray.map((e, i) => {
             return(
                 <div key={ i } className="user-list"> 
-                    <img src={e.user_img} alt={e.user_img}/>
-                    <h2>
+                    <img className="user-img" src={e.user_img} alt={e.user_img}/>
+                    <h2 className="user-name">
                         {e.first_name} <br/>
                         {e.last_name}
                     </h2>
-                    <button>Add Friend</button>
+                    <button className="add-f-btn">Add Friend</button>
                 </div>
             )
         })
@@ -118,9 +119,9 @@ export default class Dashboard extends Component {
             
                 <div className="profile-box">
                     <div className="user-info">
-                        <img className="user-img" 
+                        <img className="current-user-img" 
                             src={this.state.currentUser.user_img} 
-                            alt={this.state.currentUser.first_name}/>
+                            alt="user avatar"/>
                         <h1 className="dash-name">
                             {this.state.currentUser.first_name} <br/>
                             {this.state.currentUser.last_name}
@@ -133,9 +134,9 @@ export default class Dashboard extends Component {
                 </div>
 
                 <div>
-                    <h1>Recommended Friends</h1>
-                    <p>Sort by users matching my: </p>
-                    <select value={this.state.select} onChange={e => this.updateInfo(e.target.value)}>
+                    <h1 className="rec-friends-head">Recommended Friends</h1>
+                    <p className="rec-friends-p">Sort by users matching my: </p>
+                    <select className="rec-friends-select" value={this.state.select} onChange={e => this.updateInfo(e.target.value)}>
                         <option value="select">Attributes...</option>
                         <option value="first_name">First Name</option>
                         <option value="last_name">Last Name</option>
@@ -157,7 +158,7 @@ export default class Dashboard extends Component {
 
                     :
 
-                    <div>
+                    <div className="all-users">
                         { mappedUsers }
                     </div>
 

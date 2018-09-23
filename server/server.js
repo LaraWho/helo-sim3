@@ -48,7 +48,7 @@ const express = require('express')
     //Friend endpoints
     app.get('/api/friend/list', friend_cntrl.getUsers);
     app.post('/api/friend/add/:id', friend_cntrl.addFriend);
-    // app.post('/api/friend/remove', friend_cntrl.removeFriend);
+    app.post('/api/friend/remove/:id', friend_cntrl.removeFriend);
 
     //"Recommended" Endpoints
     // app.post('/api/recommended', friend_cntrl.recFriends);

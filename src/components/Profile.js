@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './styling.css';
+import './navStyle.css';
+import './commonStyles.css';
 import './profile.css';
 import homeLogo from './home.png';
 import searchSign from './search.png';
@@ -172,29 +173,34 @@ export default class Profile extends Component {
                         </Media>
 
                 <div>
-                        <img className="user-img" 
+                <div className="user-info-profile">
+                        <img className="current-user-img" 
                             src={this.state.currentUser.user_img} 
                             alt={this.state.currentUser.first_name}/>
-                        <h1 className="profile-name">
+                        <h1 className="dash-name">
                             {this.state.currentUser.first_name} <br/>
                             {this.state.currentUser.last_name}
                         </h1>
-                    <button className="update-btn" onClick={this.updateAll}>Update</button>
-                    <button onClick={this.clearChanges}>Cancel</button>
+                        <div className="btns">
+                            <button className="update-btn" onClick={this.updateAll}>Update</button>
+                            <button className="clear-btn" onClick={this.clearChanges}>Cancel</button>
+                        </div>
                 </div>
-
+                </div>
+                                
+        <div className="profile-container">
                 <div>
-                    <p>First Name</p>
+                    <p className="profile-title">First Name</p>
                     <input type="text" value={this.state.first_name} onChange={this.updateFirst}
                     placeholder="Type here to update..."/>
                 </div>
                 <div>
-                    <p>Last Name</p>
+                    <p className="profile-title">Last Name</p>
                     <input type="text" value={this.state.last_name} onChange={this.updateLast}
                     placeholder="Type here to update..."/>
                 </div>
                 <div>
-                    <p>Gender</p>
+                    <p className="profile-title">Gender</p>
                     {/* put value on this select tag, so it shows the state value which the user selected */}
                     <select value={this.state.gender} onChange={this.updateGender}>
                         <option value={this.state.select}>Select...</option>                                
@@ -204,7 +210,7 @@ export default class Profile extends Component {
                     </select>
                 </div>
                 <div>
-                    <p>Hair Colour</p>
+                    <p className="profile-title">Hair Colour</p>
                     <select value={this.state.hair_colour} onChange={this.updateHair}>
                         <option value="select">Select...</option>
                         <option value="Brown">Brown</option>
@@ -214,7 +220,7 @@ export default class Profile extends Component {
                     </select>
                 </div>
                 <div>
-                    <p>Eye Colour</p>
+                    <p className="profile-title">Eye Colour</p>
                     <select value={this.state.eye_colour} onChange={this.updateEye}>
                         <option value="select">Select...</option>
                         <option value="Hazel">Hazel</option>
@@ -224,7 +230,7 @@ export default class Profile extends Component {
                     </select>
                 </div>
                 <div>
-                    <p>Hobby</p>
+                    <p className="profile-title">Hobby</p>
                     <select value={this.state.hobby} onChange={this.updateHobby}>
                         <option value="select">Select...</option>                                
                         <option value="Reading">Reading</option>
@@ -235,7 +241,7 @@ export default class Profile extends Component {
                     </select>
                 </div>
                 <div>
-                    <p>Birthday Day</p>
+                    <p className="profile-title">Birthday Day</p>
                     <select value={this.state.birth_day} onChange={this.updateDay}>
                         <option value="select">Select...</option>                        
                         <option value="1">1</option>
@@ -273,7 +279,7 @@ export default class Profile extends Component {
                     </select>
                 </div>
                 <div>
-                    <p>Birthday Month</p>
+                    <p className="profile-title">Birthday Month</p>
                     <select value={this.state.birth_month} onChange={this.updateMonth}>
                         <option value="select">Select...</option>
                         <option value="January">January</option>
@@ -293,7 +299,7 @@ export default class Profile extends Component {
                 </div>
 
                 <div>
-                    <p>Birthday Year</p>
+                    <p className="profile-title">Birthday Year</p>
                     <select value={this.state.birth_year} onChange={this.updateYear}>
                             <option value="select">Select...</option>
                             <option value="2013">2013</option>
@@ -382,8 +388,9 @@ export default class Profile extends Component {
                             <option value="1930">1930</option>
                     </select>
                 </div>
-
             </div>
+
+        </div>
         )
     }
 }

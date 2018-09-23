@@ -1,5 +1,5 @@
 .update-btn {
-    margin: 20px;
+    margin: 5px;
     border-radius: 1px;
     background: radial-gradient(circle at 50% -46%, #737373, #403d39);
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
@@ -8,6 +8,34 @@
     color: #f2f2f2;
     padding: 6px 18px;
     
+}
+
+.clear-btn {
+    margin: 5px;
+}
+
+.user-info-profile {
+    display: flex;
+    align-items: center;
+    height: 90px;
+    width: 80%;    
+    margin: auto;
+    margin-top: 20px;
+    padding-top: 10px;
+    border: 1px solid #ccc3c3;
+    padding: 5px;
+    background-color: #ffffff;
+    
+}
+
+.profile-title {
+    margin: 5px;
+    margin-bottom: -6px;
+    margin-top: 15px;
+}
+
+.profile-container {
+    margin-bottom: 30px;
 }
 
 

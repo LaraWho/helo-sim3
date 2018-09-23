@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './styling.css';
+import './navStyle.css';
+import './commonStyles.css';
 import './search.css';
 import homeLogo from './home.png';
 import searchSign from './search.png';
@@ -17,13 +18,15 @@ export default class Search extends Component {
             filteredUsers: [],
             showFilter: false,
             select: '',
-            input: ''
+            input: '',
+            removeBtn: false
         }
 
     }
 
     componentDidMount() {
         this.getAllUsers()
+        // this.checkFriend()
     }
 
     getAllUsers = () => {
@@ -36,6 +39,22 @@ export default class Search extends Component {
             console.log(err)
         })
     }
+
+    // checkFriend = () => {
+    //     axios.get('/api/user/list')
+    //     .then( res => {
+    //       res.data.forEach((element) => {
+    //         console.log(element.user_id)
+    //       })
+    //     })
+    //   }
+
+    // checkFriend = () => {
+    //     axios.patch(`/api/user/patch/${friend_id}`)
+    //     .then(res => {
+
+    //     })
+    // }
 
     updateSearch = (val) => {
         this.setState({
@@ -67,7 +86,21 @@ export default class Search extends Component {
     addFriend = (user_id) => {
         axios.post(`/api/friend/add/${user_id}`)
         .then(res => {
-            // console.table(res.data)
+            this.setState({
+                removeBtn: true
+            })
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+    removeFriend = (user_id) => {
+        axios.delete(`/api/friend/remove/${user_id}`)
+        .then(res => {
+            console.log(res.data)
+            this.setState({
+                removeBtn: false
+            })
         }).catch((err) => {
             console.log(err)
         })
@@ -86,12 +119,28 @@ export default class Search extends Component {
         let mappedUsers = allUsersArray.map((e, i) => {
             return(
                 <div key={ i } className="user-list"> 
-                    <img src={e.user_img} alt={e.user_img}/>
-                    <h2>
+                    <img className="user-img" src={e.user_img} alt={e.user_img}/>
+                    <h2 className="user-name">
                         {e.first_name} <br/>
                         {e.last_name}
                     </h2>
-                    <button onClick={() => this.addFriend(e.user_id)}>Add Friend</button>
+
+<div>
+                     {
+                         this.state.removeBtn ? 
+
+                    <button className="remove-f-btn" onClick={() => this.removeFriend(e.user_id)}>Remove Friend</button>
+
+
+                        :
+
+
+                    <button className="add-f-btn" onClick={() => this.addFriend(e.user_id)}>Add Friend</button>
+
+                    
+                    }
+                    </div>
+
                 </div>
             )
         })
@@ -144,7 +193,7 @@ export default class Search extends Component {
 
                     :
 
-                    <div>
+                    <div className="all-users">
                         { mappedUsers }
                     </div>
 
