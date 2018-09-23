@@ -29,29 +29,13 @@ export default class Search extends Component {
     getAllUsers = () => {
         axios.get('/api/user/list')
         .then(res => {
-            console.log(res.data)
             this.setState({
                 allUsers: res.data
-                // first_name: res.data.first_name,
-                // last_name: res.data.last_name
                 }) 
         }).catch((err) => {
             console.log(err)
         })
     }
-
-    // searchUsers = () => {
-    //     let { first_name, last_name } = this.state.allUsers
-    //     axios.get('/api/user/search', {first_name, last_name})
-    //     .then(res => {
-    //         this.setState({
-    //             filteredUsers: res.data,
-    //             showFilter: true
-    //         })
-    //     }).catch((err) => {
-    //         console.log(err)
-    //     })
-    // }
 
     updateSearch = (val) => {
         this.setState({
@@ -65,21 +49,11 @@ export default class Search extends Component {
         })
     }
 
-    // updateFilter = (val) => {
-    //     this.setState({
-    //         select: val
-    //     },
-    //     this.filterUsers
-    //     )
-    // }
-
     filterUsers = () => {
         this.setState({
                 showFilter: true,
                 filteredUsers: this.state.allUsers.filter(el => {
-                    console.log(this.state.input)
-                    return el[this.state.select] === this.state.input  
-                    // el.last_name === this.state.input
+                    return el[this.state.select] === this.state.input 
                 })
         }) 
     }
@@ -90,7 +64,17 @@ export default class Search extends Component {
         })
     }
 
+    addFriend = (user_id) => {
+        axios.post(`/api/friend/add/${user_id}`)
+        .then(res => {
+            // console.table(res.data)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
     render() {
+
         let allUsersArray = []
 
         if(!this.state.showFilter) {
@@ -107,7 +91,7 @@ export default class Search extends Component {
                         {e.first_name} <br/>
                         {e.last_name}
                     </h2>
-                    <button>Add Friend</button>
+                    <button onClick={() => this.addFriend(e.user_id)}>Add Friend</button>
                 </div>
             )
         })

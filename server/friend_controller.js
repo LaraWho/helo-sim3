@@ -13,9 +13,27 @@ module.exports = {
             console.log(err)
         })
     
-    }
+    },
 
-    // addFriend:
+        addFriend: (req, res) => {
+        const dbInstance = req.app.get('db')
+        let {user_id} = req.session.user
+        let friend_id = req.params.id
+
+        // console.log('user_id: ', user_id)
+        // console.log('friend_id: ', friend_id)
+
+            
+        dbInstance.add_friend([ user_id, friend_id])
+        .then(users => {
+            res.status(200).send(users)
+            
+        }).catch( err => {
+            res.sendStatus(500)
+            console.log(err)
+        })
+
+    }
 
     // removeFriend:
 
