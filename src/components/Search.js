@@ -169,14 +169,14 @@ export default class Search extends Component {
                             )}
                         </Media>
 
-                <div>
+                <div className="search-bar">
                     <select value={this.state.select} onChange={e => this.updateSearch(e.target.value)}>
                         <option value="select">Select...</option>
                         <option value="first_name">First Name</option>
                         <option value="last_name">Last Name</option>
                     </select>
 
-                    <input type="text" value={this.state.input} onChange={(e) => this.handleInputChange(e.target.value)}/>
+                    <input className="search-input" type="text" value={this.state.input} onChange={(e) => this.handleInputChange(e.target.value)}/>
 
                     <button onClick={this.filterUsers} className="search-btn">Search</button>
 

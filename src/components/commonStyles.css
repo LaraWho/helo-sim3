@@ -76,5 +76,22 @@
 
     }
 
+    .user-list {
+        display: flex;
+        border: 1px solid #ccc3c3;
+        width: 40%;
+        justify-content: space-between;
+    }
+
+    .all-users {
+        width: 80%;
+        padding: 15px 0px;
+    }
+
+    .user-img {
+        height: 100%;
+        width: 80px;
+    }
+
 
 }

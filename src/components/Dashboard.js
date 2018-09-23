@@ -115,8 +115,7 @@ export default class Dashboard extends Component {
                             )}
                         </Media>
             
-            <div className="dash-content">
-            
+           
                 <div className="profile-box">
                     <div className="user-info">
                         <img className="current-user-img" 
@@ -133,8 +132,9 @@ export default class Dashboard extends Component {
                         update your profile, the better recommendations we can make!</p>
                 </div>
 
-                <div>
+                <div className="rec-header">
                     <h1 className="rec-friends-head">Recommended Friends</h1>
+                    <div className="rec-filter">
                     <p className="rec-friends-p">Sort by users matching my: </p>
                     <select className="rec-friends-select" value={this.state.select} onChange={e => this.updateInfo(e.target.value)}>
                         <option value="select">Attributes...</option>
@@ -148,8 +148,9 @@ export default class Dashboard extends Component {
                         <option value="birth_month">Birth Month</option>
                         <option value="birth_year">Birth Year</option>
                     </select>
+                    </div>
                 </div>
-            </div>
+           
 
                 {
                     !mappedUsers[0] ?

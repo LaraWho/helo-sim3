@@ -174,6 +174,7 @@ export default class Profile extends Component {
 
                 <div>
                 <div className="user-info-profile">
+                    <div className="img-name-profile">
                         <img className="current-user-img" 
                             src={this.state.currentUser.user_img} 
                             alt={this.state.currentUser.first_name}/>
@@ -181,6 +182,7 @@ export default class Profile extends Component {
                             {this.state.currentUser.first_name} <br/>
                             {this.state.currentUser.last_name}
                         </h1>
+                    </div>
                         <div className="btns">
                             <button className="update-btn" onClick={this.updateAll}>Update</button>
                             <button className="clear-btn" onClick={this.clearChanges}>Cancel</button>
@@ -189,17 +191,18 @@ export default class Profile extends Component {
                 </div>
                                 
         <div className="profile-container">
-                <div>
+            <div className="all-profile-options">
+                <div className="profile-select-box">
                     <p className="profile-title">First Name</p>
                     <input type="text" value={this.state.first_name} onChange={this.updateFirst}
                     placeholder="Type here to update..."/>
                 </div>
-                <div>
+                <div className="profile-select-box">
                     <p className="profile-title">Last Name</p>
                     <input type="text" value={this.state.last_name} onChange={this.updateLast}
                     placeholder="Type here to update..."/>
                 </div>
-                <div>
+                <div className="profile-select-box">
                     <p className="profile-title">Gender</p>
                     {/* put value on this select tag, so it shows the state value which the user selected */}
                     <select value={this.state.gender} onChange={this.updateGender}>
@@ -209,7 +212,7 @@ export default class Profile extends Component {
                         <option value="Rainbow">Rainbow</option>
                     </select>
                 </div>
-                <div>
+                <div className="profile-select-box">
                     <p className="profile-title">Hair Colour</p>
                     <select value={this.state.hair_colour} onChange={this.updateHair}>
                         <option value="select">Select...</option>
@@ -219,7 +222,7 @@ export default class Profile extends Component {
                         <option value="Rainbow">Rainbow</option>
                     </select>
                 </div>
-                <div>
+                <div className="profile-select-box">
                     <p className="profile-title">Eye Colour</p>
                     <select value={this.state.eye_colour} onChange={this.updateEye}>
                         <option value="select">Select...</option>
@@ -229,7 +232,7 @@ export default class Profile extends Component {
                         <option value="Green">Green</option>
                     </select>
                 </div>
-                <div>
+                <div className="profile-select-box">
                     <p className="profile-title">Hobby</p>
                     <select value={this.state.hobby} onChange={this.updateHobby}>
                         <option value="select">Select...</option>                                
@@ -240,7 +243,7 @@ export default class Profile extends Component {
                         <option value="Cycling">Cycling</option>
                     </select>
                 </div>
-                <div>
+                <div className="profile-select-box">
                     <p className="profile-title">Birthday Day</p>
                     <select value={this.state.birth_day} onChange={this.updateDay}>
                         <option value="select">Select...</option>                        
@@ -278,7 +281,7 @@ export default class Profile extends Component {
                         <option value="31">31</option>
                     </select>
                 </div>
-                <div>
+                <div className="profile-select-box">
                     <p className="profile-title">Birthday Month</p>
                     <select value={this.state.birth_month} onChange={this.updateMonth}>
                         <option value="select">Select...</option>
@@ -298,7 +301,7 @@ export default class Profile extends Component {
                     </select>
                 </div>
 
-                <div>
+                <div className="profile-select-box">
                     <p className="profile-title">Birthday Year</p>
                     <select value={this.state.birth_year} onChange={this.updateYear}>
                             <option value="select">Select...</option>
@@ -389,7 +392,7 @@ export default class Profile extends Component {
                     </select>
                 </div>
             </div>
-
+            </div>
         </div>
         )
     }

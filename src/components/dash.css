@@ -46,6 +46,8 @@ p.welcome-msg {
     margin-top: 10px;
     overflow-y: scroll;
     background-color: #ffffffe8;
+    display: flex;
+    align-items: center;
 
 }
 .welcome-msg::-webkit-scrollbar { width: 0 !important }
@@ -80,46 +82,70 @@ p.welcome-msg {
     .edit-btn {
         font-size: 14px;
         margin-top: 95px;
+        width: max-content;
+        margin-left: -155px;
     }
-    
-.dash-content {
-    display: flex;
-    flex-direction: column;
-}
-    
+ 
 .profile-box {
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    margin: auto;
     margin-top: 20px;
+    width: 80%;
 
 }
 
 .current-user-img {
-    height: 100px;
+    height: 120px;
     width: 100px;
     border: 1px solid #ccc3c3;
-
+    margin-right: 12px;
 }
 
 .dash-name {
     font-weight: 600; 
     margin-top: 10px;
-    font-size: 18px;
+    font-size: 24px;
 }
 
-.welcome-msg {
-    height: 110px;
-    font-size: 14px;
-    width: 30%;
-    border: 1px solid #ccc3c3;
-    padding: 16px;
-    margin: 15px;
+p.welcome-msg {
+    padding: 10px 6px;
+    font-size: 18px;
+    height: 132px;
+    width: 70%;
+    margin: 0;
 }
 
 .user-info {
     display: flex;
     height: 132px;
-    margin-top: 21px;
+    margin-top: 0px;
+    width: 40%;
+    margin-right: 20px;
+    padding: 10px 0px;
+    justify-content: space-evenly;
+}
+
+.rec-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.rec-friends-head {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 28px;
+}
+/* 
+.rec-friends-select {
+    margin-left: 10px;
+} */
+
+.rec-filter {
+    display: flex;
+    align-items: center;
 }
 
 }
