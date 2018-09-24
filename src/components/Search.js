@@ -19,14 +19,14 @@ export default class Search extends Component {
             showFilter: false,
             select: '',
             input: '',
-            removeBtn: false
+            friendList: []
         }
 
     }
 
     componentDidMount() {
         this.getAllUsers()
-        // this.checkFriend()
+        this.checkFriend()
     }
 
     getAllUsers = () => {
@@ -40,21 +40,14 @@ export default class Search extends Component {
         })
     }
 
-    // checkFriend = () => {
-    //     axios.get('/api/user/list')
-    //     .then( res => {
-    //       res.data.forEach((element) => {
-    //         console.log(element.user_id)
-    //       })
-    //     })
-    //   }
-
-    // checkFriend = () => {
-    //     axios.patch(`/api/user/patch/${friend_id}`)
-    //     .then(res => {
-
-    //     })
-    // }
+    checkFriend = (user_id) => {
+        axios.get(`/api/user/list/${user_id}`)
+        .then( res => {
+            this.setState({
+                friendList: res.data
+            })
+          })
+      }
 
     updateSearch = (val) => {
         this.setState({
@@ -86,9 +79,7 @@ export default class Search extends Component {
     addFriend = (user_id) => {
         axios.post(`/api/friend/add/${user_id}`)
         .then(res => {
-            this.setState({
-                removeBtn: true
-            })
+            this.checkFriend() 
         }).catch((err) => {
             console.log(err)
         })
@@ -97,16 +88,24 @@ export default class Search extends Component {
     removeFriend = (user_id) => {
         axios.delete(`/api/friend/remove/${user_id}`)
         .then(res => {
-            console.log(res.data)
-            this.setState({
-                removeBtn: false
-            })
+            console.log(res.data)          
         }).catch((err) => {
             console.log(err)
         })
     }
 
     render() {
+
+        let checkedUsers = this.state.allUsers.map(person => {
+            this.state.friendList.forEach(friend => {
+            if(person.user_id === friend.friend_id) {
+                person.isFriend = true
+                }
+            })
+            return person
+        })
+
+        console.log(checkedUsers)
 
         let allUsersArray = []
 
@@ -125,21 +124,18 @@ export default class Search extends Component {
                         {e.last_name}
                     </h2>
 
-<div>
+                <div>
+                    
                      {
-                         this.state.removeBtn ? 
+                        e.isFriend ?
 
                     <button className="remove-f-btn" onClick={() => this.removeFriend(e.user_id)}>Remove Friend</button>
-
-
                         :
-
-
                     <button className="add-f-btn" onClick={() => this.addFriend(e.user_id)}>Add Friend</button>
 
-                    
                     }
-                    </div>
+
+                </div>
 
                 </div>
             )

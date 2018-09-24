@@ -48,18 +48,13 @@ const express = require('express')
     //Friend endpoints
     app.get('/api/friend/list', friend_cntrl.getUsers);
     app.post('/api/friend/add/:id', friend_cntrl.addFriend);
-    app.post('/api/friend/remove/:id', friend_cntrl.removeFriend);
-
-    //"Recommended" Endpoints
-    // app.post('/api/recommended', friend_cntrl.recFriends);
-    // app.post('/api/recommended/add', friend_cntrl.addRecFriend);
+    app.delete('/api/friend/remove/:id', friend_cntrl.removeFriend);
+    app.get('/api/user/list/:id', friend_cntrl.userFriends);
 
     //User Endpoints
     app.get('/api/dash/user', user_cntrl.getCurrentUser);
     app.patch('/api/user/update', user_cntrl.updateProfile);
-    // app.patch('/api/user/patch/:id', user_cntrl.usersList);
     app.get('/api/user/list', user_cntrl.getAllUsers);
-    
     
     //login endpoints
     app.get('/auth/callback', auth_cntrl.login);

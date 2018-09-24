@@ -20,10 +20,6 @@ module.exports = {
         let {user_id} = req.session.user
         let friend_id = req.params.id
 
-        // console.log('user_id: ', user_id)
-        // console.log('friend_id: ', friend_id)
-
-            
         dbInstance.add_friend([ user_id, friend_id])
         .then(users => {
             res.status(200).send(users)
@@ -40,9 +36,6 @@ module.exports = {
         const  {user_id}  = req.session.user;
         const friend_id = req.params.id;
 
-            console.log('req.session.user is', info)
-            console.log('req.params.id is', friend_id)
-
         dbInstance.remove_friend( [friend_id, user_id] )
         .then(users => {
             res.status(200).send(users) 
@@ -51,5 +44,18 @@ module.exports = {
             res.sendStatus(500)
             console.log(err)
         } )
-    }
+    },
+
+    userFriends: (req, res) => {
+        const dbInstance = req.app.get('db');
+        const { user_id } = req.session.user;
+        
+        dbInstance.get_friends([user_id])
+        .then(response => {
+            res.status(200).send(response) 
+        }).catch( err => {
+            console.log(err)
+        }) 
+
+}
 }

@@ -12,6 +12,11 @@
 
 .clear-btn {
     margin: 5px;
+    border-radius: 1px;
+    background: radial-gradient(circle at 50% 0, #fff, #f1eceb);
+    border: 1px solid #ccc3c3;
+    font-weight: 600;
+    padding: 6px 18px;
 }
 
 .btns {
@@ -28,9 +33,10 @@
     margin: auto;
     margin-top: 20px;
     padding-top: 10px;
-    border: 1px solid #ccc3c3;
     padding: 5px;
-    background-color: #ffffff;
+    border-radius: 2px;
+        background-color: #ffffff;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
     
 }
 
@@ -53,10 +59,11 @@ input {
     margin-top: 15px;
     width: 80%;
     height: auto;
-    background-color: #ffffff;
-    border: 1px solid #ccc3c3; 
     padding: 5px;
     padding-bottom: 15px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
 }
 
 
@@ -64,7 +71,10 @@ input {
 
 .update-btn {
     font-size: 14px;
+}
 
+.clear-btn {
+    font-size: 14px;
 }
 
 .img-name-profile {
@@ -87,9 +97,7 @@ input {
 
 .profile-container {
     width: 80%;
-    height: 60vh;
-    background-color: #ffffff;
-    border: 1px solid #ccc3c3;    
+    height: 60vh;  
     margin-top: 20px;
     padding: 10px 6px;
     display: flex;

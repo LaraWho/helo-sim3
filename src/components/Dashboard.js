@@ -18,7 +18,9 @@ export default class Dashboard extends Component {
                 currentUser: [],
                 filteredUsers: [],
                 showFilter: false,
-                select: ''
+                select: '',
+                friendList: []
+
             }
 
         }
@@ -26,6 +28,7 @@ export default class Dashboard extends Component {
     componentDidMount(){
         this.getUsers()
         this.getCurrentUser()
+        this.getFriends()
     }
     
     getUsers = () => {
@@ -50,6 +53,15 @@ export default class Dashboard extends Component {
         })
     }
 
+    getFriends = (user_id) => {
+        axios.get(`/api/user/list/${user_id}`)
+        .then( res => {
+            this.setState({
+                friendList: res.data
+            })
+          })
+      }
+
     updateInfo = (val) => {
         this.setState({
             select: val
@@ -68,8 +80,29 @@ export default class Dashboard extends Component {
         }) 
     }
 
+    addFriend = (user_id) => {
+        axios.post(`/api/friend/add/${user_id}`)
+        .then(res => {
+            this.getUsers()
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
 
     render() {
+
+        let checkedUsers = this.state.users.map(person => {
+            this.state.friendList.forEach(friend => {
+            if(person.user_id === friend.friend_id) {
+                person.isFriend = true
+                }
+            })
+            return person
+        })
+
+        console.log(checkedUsers)
+
         let newUserArray = []
 
         if(!this.state.showFilter) {
@@ -86,8 +119,18 @@ export default class Dashboard extends Component {
                         {e.first_name} <br/>
                         {e.last_name}
                     </h2>
-                    <div className="btn-box">
-                        <button className="add-f-btn">Add Friend</button>
+                   
+                    <div>
+                    
+                    {
+                       e.isFriend ?
+
+                   <button className="remove-f-btn" onClick={() => this.removeFriend(e.user_id)}>Remove Friend</button>
+                       :
+                   <button className="add-f-btn" onClick={() => this.addFriend(e.user_id)}>Add Friend</button>
+
+                   }
+
                     </div>
                 </div>
             )

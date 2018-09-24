@@ -1,5 +1,3 @@
-
-
 .search-btn {
     margin: 10px;
     border-radius: 1px;
@@ -9,7 +7,7 @@
     border: none;
     color: #f2f2f2;
     padding: 6px 18px;
-    
+    font-weight: 400;        
 }
 
 .reset-btn {
@@ -19,7 +17,6 @@
     border: 1px solid #ccc3c3;
     font-weight: 600;
     padding: 6px 18px;
-
 }
 
 .user-list {
@@ -37,10 +34,11 @@
     width: 90%;
     justify-content: center;
     margin: auto;
-    border: 1px solid #ccc3c3;
     margin-top: 10px;
     margin-bottom: 20px;
-    background-color: #ffffff;
+    background: linear-gradient(128deg, rgba(247, 216, 159, 0.1), rgba(255, 255, 255, 0.2));
+    /* box-shadow: 0 14px 28px 0 rgba(0,0,0,0.25), 0 10px 10px 0 rgba(0,0,0,0.26); */
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
 }
 
 .user-img {
@@ -58,11 +56,21 @@
 .add-f-btn {
     margin: 10px;
     padding: 8px;
+    border-radius: 1px;
+    color: #ffffff;
+    font-weight: 400;
+    background: radial-gradient(circle at 50% -46%, #FF9770, #FF7A6E);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
 }
 
 .remove-f-btn {
     margin: 10px;
     padding: 8px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
+    border-radius: 1px;
+    background: radial-gradient(circle at 50% -46%, #737373, #403D39);
+    color: #ffffff;
+    font-weight: 400;    
 }
 
 @media all and (min-width: 920px) {
@@ -92,14 +100,17 @@
 
     .user-list {
         display: flex;
-        border: 1px solid #ccc3c3;
         width: 40%;
         justify-content: flex-start;
+        border-radius: 2px;
+        background-color: #ffffff;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
+        margin: 15px;
     }
 
     .all-users {
         width: 80%;
-        padding: 15px 0px;
+        padding: 20px 0px;
     }
 
     .user-img {
