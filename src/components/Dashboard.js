@@ -101,7 +101,6 @@ export default class Dashboard extends Component {
             return person
         })
 
-        console.log(checkedUsers)
 
         let newUserArray = []
 

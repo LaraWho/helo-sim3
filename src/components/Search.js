@@ -88,7 +88,8 @@ export default class Search extends Component {
     removeFriend = (user_id) => {
         axios.delete(`/api/friend/remove/${user_id}`)
         .then(res => {
-            console.log(res.data)          
+            this.checkFriend() 
+                      
         }).catch((err) => {
             console.log(err)
         })
@@ -97,6 +98,7 @@ export default class Search extends Component {
     render() {
 
         let checkedUsers = this.state.allUsers.map(person => {
+                person.isFriend = false
             this.state.friendList.forEach(friend => {
             if(person.user_id === friend.friend_id) {
                 person.isFriend = true
@@ -105,7 +107,6 @@ export default class Search extends Component {
             return person
         })
 
-        console.log(checkedUsers)
 
         let allUsersArray = []
 
