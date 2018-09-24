@@ -52,6 +52,7 @@
 
 .user-name {
     margin: 10px;
+    text-align: left;
 }
 
 .add-f-btn {
@@ -66,6 +67,10 @@
 
 @media all and (min-width: 920px) {
 
+    .no-matches-text {
+        font-size: 36px;
+        margin-top: 50px;
+    }
 
     .reset-btn {
     font-size: 14px;
@@ -76,11 +81,20 @@
 
     }
 
+    .btn-box {
+        display: flex;
+    }
+
+    .user-name {
+        margin: 8px;
+        width: 40%;
+    }
+
     .user-list {
         display: flex;
         border: 1px solid #ccc3c3;
         width: 40%;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
 
     .all-users {

@@ -189,7 +189,7 @@ export default class Search extends Component {
 
                     !mappedUsers[0] ?
 
-                    <p>Sorry, no matches :-(</p>
+                    <p className="no-matches-text">Sorry, no matches :-(</p>
 
                     :
 

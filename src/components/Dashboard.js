@@ -86,7 +86,9 @@ export default class Dashboard extends Component {
                         {e.first_name} <br/>
                         {e.last_name}
                     </h2>
-                    <button className="add-f-btn">Add Friend</button>
+                    <div className="btn-box">
+                        <button className="add-f-btn">Add Friend</button>
+                    </div>
                 </div>
             )
         })
@@ -155,7 +157,7 @@ export default class Dashboard extends Component {
                 {
                     !mappedUsers[0] ?
 
-                    <p>Sorry, no matches :-(</p>
+                    <p className="no-matches-text">Sorry, no matches :-(</p>
 
                     :
 
