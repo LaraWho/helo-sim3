@@ -111,10 +111,9 @@ export default class Profile extends Component {
           sweetie({
               title: 'Are you sure you want to make changes?',
               text: 'Also, please fill in your birthday',
-              type: 'warning',
               showCancelButton: true,
-              confirmButtonColor: 'green',
-              cancelButtonColor: 'red',
+                confirmButtonColor: '#FF9770',
+              cancelButtonColor: '#ccc3c3',
               cancelButtonText: 'Go back!',
               confirmButtonText: 'Update!'
           }).then((result) => {
@@ -123,11 +122,12 @@ export default class Profile extends Component {
                         .then(res => {
                             this.getUser()
                         })
-                    sweetie(
-                        'Updated!',
-                        'Your profile was updated',
-                        'success'
-                    )
+                    sweetie({
+                        title: 'Updated!',
+                        text: 'Your profile was updated',
+                        showConfirmButton: false,
+                        timer: 500
+                    })
               }
           })
         

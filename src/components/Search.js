@@ -20,7 +20,9 @@ export default class Search extends Component {
             select: '',
             input: '',
             friendList: [],
-            count: ''
+            count: '',
+            page: 1,
+            allToFilter: []
         }
 
     }
@@ -28,27 +30,54 @@ export default class Search extends Component {
     componentDidMount() {
         this.getAllUsers()
         this.checkFriend()
+        this.getAllUsersToFilter()
     }
 
     countUsers = () => {
-        axios.get('/api/user/everyone')
+        axios.get(`/api/user/everyone`)
         .then(res => {
-            console.log('count in search: ', res.data)
             this.setState({
-                count: res.data[0].count
+                count: Math.ceil(res.data[0].count / 8)
             })
         }).catch((err) => {
             console.log(err)
         })
     }
 
+    nextPage = (page) => {
+        let offset = page * 8 - 8
+
+        axios.get(`/api/user/friend/${offset}`)
+        .then(res => {
+            this.setState({
+                allUsers: res.data,
+            })
+            this.setState({
+                page: page
+                }) 
+            }).catch((err) => {
+                console.log(err)
+            })
+    }
+
     getAllUsers = () => {
-        axios.get('/api/user/list')
+        axios.get(`/api/user/friend/0`)
         .then(res => {
             this.setState({
                 allUsers: res.data
                 }) 
-                // this.countUsers()
+                this.countUsers()
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+    getAllUsersToFilter = () => {
+        axios.get('/api/user/list')
+        .then(res => {
+            this.setState({
+                allToFilter: res.data
+            })
         }).catch((err) => {
             console.log(err)
         })
@@ -78,7 +107,7 @@ export default class Search extends Component {
     filterUsers = () => {
         this.setState({
                 showFilter: true,
-                filteredUsers: this.state.allUsers.filter(el => {
+                filteredUsers: this.state.allToFilter.filter(el => {
                     return el[this.state.select] === this.state.input 
                 })
         }) 
@@ -109,10 +138,14 @@ export default class Search extends Component {
         })
     }
 
-    render() {
 
-        let countedUsers = []
-        countedUsers = Math.ceil(this.state.count / 8)
+    render() {
+        
+        let countedPages = []
+        for (let i = 1; i <= this.state.count; i++) {
+            countedPages.push(<button className="page-btns" key={i} onClick={e => this.nextPage(i)}>{i}</button>);
+          }
+
 
         let checkedUsers = this.state.allUsers.map(person => {
                 person.isFriend = false
@@ -213,10 +246,21 @@ export default class Search extends Component {
 
                 }
 
-                <div>
-                    {countedUsers}
+                {
+                    this.state.showFilter ?
+                    
+                null
+    
+
+                :
+                <div className="page-btns-box">
+                    
+                    {countedPages}
+
                 </div>
-                
+
+                }
+
 
             </div>
         )

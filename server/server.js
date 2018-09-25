@@ -50,21 +50,18 @@ const express = require('express')
     app.post('/api/friend/add/:id', friend_cntrl.addFriend);
     app.delete('/api/friend/remove/:id', friend_cntrl.removeFriend);
     app.get('/api/user/list/:id', friend_cntrl.userFriends);
-    
 
     //User Endpoints
     app.get('/api/dash/user', user_cntrl.getCurrentUser);
     app.patch('/api/user/update', user_cntrl.updateProfile);
-    // app.get('/api/user/list', user_cntrl.getAllUsers);
+    app.get('/api/user/list', user_cntrl.getAllUsers);
     app.get('/api/user/friend/:page', user_cntrl.limitView);
-    app.get('/api/user/allUsers', user_cntrl.countUsers);
-    app.get('/api/user/everyone', user_cntrl.countSearch);
+    app.get('/api/user/everyone', user_cntrl.countUsers);
     
-    //login endpoints
+    //Login endpoints
     app.get('/auth/callback', auth_cntrl.login);
     app.get('/api/user', auth_cntrl.getUser);
     app.get('/logout', auth_cntrl.logout);
-
    
     
     app.listen(4567, ( ) => {

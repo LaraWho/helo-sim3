@@ -1,7 +1,14 @@
 .App {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
+}
 
+button.swal2-popup .swal2-confirm.swal2-styled {
+  background-color: #FF9770;
+
+}
+button.swal2-popup .swal2-styled.swal2-cancel {
+  color: #303030;
 }
 
 

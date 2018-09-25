@@ -94,7 +94,10 @@
 
 .page-btns-box {
     /* width: 80%; */
-    margin: auto;
+    margin: auto; 
+    position: fixed;
+    width: stretch;
+    bottom: 0;
 }
 .page-btns {
     font-size: 18px;
@@ -149,6 +152,7 @@
     .all-users {
         width: 80%;
         padding: 20px 0px;
+        margin-bottom: 100px;
     }
 
     .user-img {
