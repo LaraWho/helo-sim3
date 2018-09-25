@@ -21,9 +21,14 @@ button:focus {
   outline: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 input:focus {
   outline: none;
-
+  border: 2px solid #FF9770;
+  background-color: rgba(255, 150, 112, 0.3);
 }
 
 input {
@@ -43,12 +48,12 @@ select:focus {
 
 select:hover {
   background-color: #e9e5d96b;
+  cursor: pointer;
 }
 
 option:hover {
   background-color: #f2f2f2;
 }
-
 
 select {
   background-color: #ffffff;

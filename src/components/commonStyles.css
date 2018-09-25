@@ -74,15 +74,40 @@
     font-weight: 400;    
 }
 
+.page-btns {
+    margin: 5px;
+    margin-bottom: 15px;
+    font-family: 'Open Sans', sans-serif;
+    /* box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2); */
+    background: none;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.page-btns-box {
+    padding: 5px;
+    background: linear-gradient(97deg, #FF7A6E, #FF9770);
+    /* background: radial-gradient(circle at 50% -46%, #FF9770, #FF7A6E); */
+}
+
 @media all and (min-width: 920px) {
 
+.page-btns-box {
+    /* width: 80%; */
+    margin: auto;
+}
+.page-btns {
+    font-size: 18px;
+}
     .add-f-btn {
         margin: 0px;
         margin-left: 0px;
+        margin-right: 5px;
         padding: 8px 18px;
     }
     .remove-f-btn {
         margin: 0px;
+        margin-right: 5px;
         padding: 8px 8px;
 
     }
@@ -107,6 +132,7 @@
 
     .user-name {
         margin: 8px;
+        margin-left: 2px;
         width: 40%;
     }
 
@@ -128,6 +154,7 @@
     .user-img {
         height: 100%;
         width: 80px;
+        margin-left: 0px;
     }
 
 

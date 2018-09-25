@@ -19,7 +19,8 @@ export default class Search extends Component {
             showFilter: false,
             select: '',
             input: '',
-            friendList: []
+            friendList: [],
+            count: ''
         }
 
     }
@@ -29,12 +30,25 @@ export default class Search extends Component {
         this.checkFriend()
     }
 
+    countUsers = () => {
+        axios.get('/api/user/everyone')
+        .then(res => {
+            console.log('count in search: ', res.data)
+            this.setState({
+                count: res.data[0].count
+            })
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
     getAllUsers = () => {
         axios.get('/api/user/list')
         .then(res => {
             this.setState({
                 allUsers: res.data
                 }) 
+                // this.countUsers()
         }).catch((err) => {
             console.log(err)
         })
@@ -96,6 +110,9 @@ export default class Search extends Component {
     }
 
     render() {
+
+        let countedUsers = []
+        countedUsers = Math.ceil(this.state.count / 8)
 
         let checkedUsers = this.state.allUsers.map(person => {
                 person.isFriend = false
@@ -195,6 +212,10 @@ export default class Search extends Component {
                     </div>
 
                 }
+
+                <div>
+                    {countedUsers}
+                </div>
                 
 
             </div>

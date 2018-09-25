@@ -18,14 +18,56 @@ module.exports = {
         }) 
     },
 
-        getAllUsers: (req, res) => {
-        const dbInstance = req.app.get('db');
-        const { user_id } = req.session.user;
+    // getAllUsers: (req, res) => {
+    //     const dbInstance = req.app.get('db');
+    //     const { user_id } = req.session.user;
 
         
-        dbInstance.view_all([user_id])
-        .then(response => {
-            res.status(200).send(response) 
+    //     dbInstance.view_all([user_id])
+    //     .then(response => {
+    //             res.status(200).send(response)
+    //     }).catch( err => {
+    //         console.log(err)
+    //     }) 
+    // }
+
+    limitView: (req, res) => {
+        const dbInstance = req.app.get('db');
+        const { user_id } = req.session.user;
+        let { page } = req.params;
+        page = (page) + 1
+
+        console.log('page: ', page)
+
+            dbInstance.limit_view([user_id, page])
+            .then(response => {
+                res.status(200).send(response) 
+        }).catch( err => {
+            console.log(err)
+        }) 
+    },
+
+    countUsers: (req, res) => {
+        const dbInstance = req.app.get('db');
+        const { user_id } = req.session.user;
+        
+            dbInstance.count_users([user_id])
+            .then(response => {
+                console.log('response in countusers: ', response)
+                res.status(200).send(response) 
+        }).catch( err => {
+            console.log(err)
+        }) 
+    },
+
+    countSearch: (req, res) => {
+        const dbInstance = req.app.get('db');
+        const { user_id } = req.session.user;
+        
+            dbInstance.count_search([user_id])
+            .then(response => {
+                console.log('response in countSearch: ', response)
+                res.status(200).send(response) 
         }).catch( err => {
             console.log(err)
         }) 

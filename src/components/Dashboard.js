@@ -19,10 +19,10 @@ export default class Dashboard extends Component {
                 filteredUsers: [],
                 showFilter: false,
                 select: '',
-                friendList: []
-
+                friendList: [],
+                count: '',
+                page: 1
             }
-
         }
 
     componentDidMount(){
@@ -30,13 +30,28 @@ export default class Dashboard extends Component {
         this.getCurrentUser()
         this.getFriends()
     }
+
+    countUsers = () => {
+        axios.get('/api/user/allUsers')
+        .then(res => {
+            console.log('dash count: ',res.data[0].count)
+            this.setState({
+                count: Math.ceil(res.data[0].count / 8)
+            })
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
     
     getUsers = () => {
-        axios.get('/api/friend/list')
+        axios.get(`/api/user/friend/1`)
         .then(res => {
+            console.log('getUsers res.data: ', res.data)
             this.setState({
                 users: res.data
                 }) 
+        this.countUsers()
+
             }).catch((err) => {
                 console.log(err)
             })
@@ -89,8 +104,29 @@ export default class Dashboard extends Component {
         })
     }
 
+    nextPage = (page) => {
+        axios.get(`/api/user/friend/${page}`)
+        .then(res => {
+            console.log('res: ', res)
+            this.setState({
+                users: res.data,
+                page: (+page) + 1
+                }) 
+
+            }).catch((err) => {
+                console.log(err)
+            })
+    }
+
 
     render() {
+        console.log(this.state.page)
+        
+        let countedPages = []
+        for (let i = 1; i <= this.state.count; i++) {
+            countedPages.push(<button className="page-btns" key={i} onClick={this.nextPage}>{i}</button>);
+          }
+
 
         let checkedUsers = this.state.users.map(person => {
             this.state.friendList.forEach(friend => {
@@ -209,6 +245,12 @@ export default class Dashboard extends Component {
 
 
                 }
+
+                <div className="page-btns-box">
+                    
+                    {countedPages}
+
+                </div>
 
                 
         </div>
