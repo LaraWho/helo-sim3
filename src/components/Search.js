@@ -63,6 +63,7 @@ export default class Search extends Component {
     getAllUsers = () => {
         axios.get(`/api/user/friend/0`)
         .then(res => {
+            console.log(res.data)
             this.setState({
                 allUsers: res.data
                 }) 
@@ -106,10 +107,7 @@ export default class Search extends Component {
 
     filterUsers = () => {
         this.setState({
-                showFilter: true,
-                filteredUsers: this.state.allToFilter.filter(el => {
-                    return el[this.state.select] === this.state.input 
-                })
+                showFilter: true
         }) 
     }
 
@@ -122,7 +120,7 @@ export default class Search extends Component {
     addFriend = (user_id) => {
         axios.post(`/api/friend/add/${user_id}`)
         .then(res => {
-            this.checkFriend() 
+            this.checkFriend()
         }).catch((err) => {
             console.log(err)
         })
@@ -131,8 +129,7 @@ export default class Search extends Component {
     removeFriend = (user_id) => {
         axios.delete(`/api/friend/remove/${user_id}`)
         .then(res => {
-            this.checkFriend() 
-                      
+            this.checkFriend()     
         }).catch((err) => {
             console.log(err)
         })
@@ -148,6 +145,7 @@ export default class Search extends Component {
 
 
         let checkedUsers = this.state.allUsers.map(person => {
+                person = {...person}
                 person.isFriend = false
             this.state.friendList.forEach(friend => {
             if(person.user_id === friend.friend_id) {
@@ -157,13 +155,25 @@ export default class Search extends Component {
             return person
         })
 
+        let filteredUsers = this.state.allToFilter.filter(el => {
+            return el[this.state.select] === this.state.input 
+        }).map(person => {
+            person = {...person}
+            person.isFriend = false
+        this.state.friendList.forEach(friend => {
+        if(person.user_id === friend.friend_id) {
+            person.isFriend = true
+            }
+        })
+        return person
+    })
 
         let allUsersArray = []
 
         if(!this.state.showFilter) {
-            allUsersArray = this.state.allUsers
+            allUsersArray = checkedUsers
         } else {
-            allUsersArray = this.state.filteredUsers
+            allUsersArray = filteredUsers
         }
 
         let mappedUsers = allUsersArray.map((e, i) => {

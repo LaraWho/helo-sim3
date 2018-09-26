@@ -98,8 +98,10 @@ p.welcome-msg {
         font-size: 14px;
         margin-top: 95px;
         width: max-content;
-        margin-left: -104px;
+        position: relative;
+        right: 140px;
     }
+
  
 .profile-box {
     display: flex;

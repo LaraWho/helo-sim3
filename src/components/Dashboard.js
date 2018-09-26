@@ -7,6 +7,7 @@ import homeLogo from './home.png';
 import searchSign from './search.png';
 import Media from "react-media";
 import axios from 'axios';
+import sweetie from 'sweetalert2';
 
 
 export default class Dashboard extends Component {
@@ -65,24 +66,34 @@ export default class Dashboard extends Component {
         this.setState({
             select: val
         },
-        this.filterUsers
+        this.filterUsers()
         )
     }
 
-
     filterUsers = () => {
         this.setState({
-                showFilter: true,
-                filteredUsers: this.state.users.filter(el => {
-                    return el[this.state.select] === this.state.currentUser[this.state.select]
-                })
+                showFilter: true
         }) 
     }
 
     addFriend = (user_id) => {
+        let userName = ''
         axios.post(`/api/friend/add/${user_id}`)
         .then(res => {
+            userName = this.state.users.map(e => {
+                if(e.user_id === res.data[0].friend_id) {
+                    return userName = e.first_name
+                } else { null }
+            }).join('')
             this.getUsers()
+            sweetie({
+                title: `${userName}`,
+                text: `is now your friend!`,
+                showConfirmButton: true,
+                confirmButtonColor: '#FF9770',
+                // timer: 1000,
+                padding: '2.5rem'
+            })
         }).catch((err) => {
             console.log(err)
         })
@@ -91,8 +102,9 @@ export default class Dashboard extends Component {
 
     render() {
       
-
         let checkedUsers = this.state.users.map(person => {
+                person = {...person}
+                person.isFriend = false
             this.state.friendList.forEach(friend => {
             if(person.user_id === friend.friend_id) {
                 person.isFriend = true
@@ -101,13 +113,25 @@ export default class Dashboard extends Component {
             return person
         })
 
+        let filteredUsers = this.state.users.filter(el => {
+            return el[this.state.select] === this.state.currentUser[this.state.select]
+        }).map(person => {
+            person = {...person}
+            person.isFriend = false
+        this.state.friendList.forEach(friend => {
+        if(person.user_id === friend.friend_id) {
+            person.isFriend = true
+            }
+        })
+        return person
+    })
 
         let newUserArray = []
 
         if(!this.state.showFilter) {
-            newUserArray = this.state.users
+            newUserArray = checkedUsers
         } else {
-            newUserArray = this.state.filteredUsers
+            newUserArray = filteredUsers
         }
 
         let mappedUsers = newUserArray.map((e, i) => {
@@ -169,7 +193,9 @@ export default class Dashboard extends Component {
                             {this.state.currentUser.first_name} <br/>
                             {this.state.currentUser.last_name}
                         </h1>
-                        <Link to="/Profile"><button className="edit-btn">Edit Profile</button></Link>
+                        <div className="edit-btn-box">
+                            <Link to="/Profile"><button className="edit-btn">Edit Profile</button></Link>
+                        </div>
                     </div>
                     <p className="welcome-msg">Welcome to Helo! Find recommended friends based on your 
                         similarities, and even search for them by name. The more you
