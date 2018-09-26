@@ -3,6 +3,10 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+.swal2-popup .swal2-title {
+  color: #ff9770 !important;
+}
+
 a {
   text-decoration: none;
 }
