@@ -101,6 +101,7 @@ input {
 .user-info-profile { 
     height: 140px;
     justify-content: space-around;
+    margin-top: 35px;
 
 }
 
