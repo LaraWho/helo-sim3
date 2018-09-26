@@ -67,7 +67,6 @@ input {
 }
 
 .all-profile-options {
-    margin: auto;
     width: 95%;
     display: flex;
     flex-direction: row;

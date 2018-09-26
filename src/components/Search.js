@@ -63,7 +63,6 @@ export default class Search extends Component {
     getAllUsers = () => {
         axios.get(`/api/user/friend/0`)
         .then(res => {
-            console.log(res.data)
             this.setState({
                 allUsers: res.data
                 }) 

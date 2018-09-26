@@ -16,7 +16,6 @@
     padding: 5px;
     background: linear-gradient(97deg, #FF7A6E, #FF9770);
     margin: auto; 
-    position: fixed;
     width: stretch;
     bottom: 0;
     /* background: radial-gradient(circle at 50% -46%, #FF9770, #FF7A6E); */
@@ -30,6 +29,11 @@
     .page-btns {
         font-size: 18px;
     }
+
+.page-btns-box {
+    position: fixed;
+
+}
 
 
     
