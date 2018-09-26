@@ -1,15 +1,37 @@
 .search-bar {
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .search-input{
     margin-left: 10px; 
 }
 
+.page-btns:hover {
+    transform: scale(1.6,1.6);
+    transition: transform 0.4s;
+    transition-timing-function: ease-in-out;
+}
+
+.page-btns-box {
+    padding: 5px;
+    background: linear-gradient(97deg, #FF7A6E, #FF9770);
+    margin: auto; 
+    position: fixed;
+    width: stretch;
+    bottom: 0;
+    /* background: radial-gradient(circle at 50% -46%, #FF9770, #FF7A6E); */
+}
+
 @media all and (min-width: 920px) {
     .search-bar {
-        margin-top: 20px;
+        margin-top: 30px;
     }
+
+    .page-btns {
+        font-size: 18px;
+    }
+
+
     
     
     }

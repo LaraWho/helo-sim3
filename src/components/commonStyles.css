@@ -37,8 +37,8 @@
     margin: auto;
     margin-top: 10px;
     margin-bottom: 20px;
-    background: linear-gradient(128deg, rgba(247, 216, 159, 0.1), rgba(255, 255, 255, 0.2));
-    /* box-shadow: 0 14px 28px 0 rgba(0,0,0,0.25), 0 10px 10px 0 rgba(0,0,0,0.26); */
+    background-color: #ffffff;
+    /* background: linear-gradient(128deg, rgba(247, 216, 159, 0.1), rgba(255, 255, 255, 0.2)); */
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
 }
 
@@ -84,24 +84,10 @@
     font-size: 14px;
 }
 
-.page-btns-box {
-    padding: 5px;
-    background: linear-gradient(97deg, #FF7A6E, #FF9770);
-    /* background: radial-gradient(circle at 50% -46%, #FF9770, #FF7A6E); */
-}
 
 @media all and (min-width: 920px) {
 
-.page-btns-box {
-    /* width: 80%; */
-    margin: auto; 
-    position: fixed;
-    width: stretch;
-    bottom: 0;
-}
-.page-btns {
-    font-size: 18px;
-}
+
     .add-f-btn {
         margin: 0px;
         margin-left: 0px;

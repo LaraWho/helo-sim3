@@ -115,7 +115,9 @@ export default class Profile extends Component {
                 confirmButtonColor: '#FF9770',
               cancelButtonColor: '#ccc3c3',
               cancelButtonText: 'Go back!',
-              confirmButtonText: 'Update!'
+              confirmButtonText: 'Update!',
+              padding: '2.5rem',
+
           }).then((result) => {
               if(result.value) {
                 axios.patch('/api/user/update', {first_name, last_name, gender, hair_colour, eye_colour, hobby, birth_day, birth_month, birth_year })
@@ -126,7 +128,8 @@ export default class Profile extends Component {
                         title: 'Updated!',
                         text: 'Your profile was updated',
                         showConfirmButton: false,
-                        timer: 500
+                        timer: 500,
+                        padding: '2.5rem'
                     })
               }
           })
@@ -137,12 +140,13 @@ export default class Profile extends Component {
         sweetie({
             title: 'Are you sure?',
             text: 'Do you really want to cancel your changes?',
-            type: 'question',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#FF9770',
+            cancelButtonColor: '#ccc3c3',
             cancelButtonText: 'No!',
-            confirmButtonText: 'Yes!'
+            confirmButtonText: 'Yes!',
+            padding: '2.5rem'
+
         }).then((result) => {
             this.getUser()
         })

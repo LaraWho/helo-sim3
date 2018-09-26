@@ -26,7 +26,7 @@
 
 .user-info-profile {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: 90px;
     width: 80%;    
@@ -42,7 +42,7 @@
 
 .img-name-profile {
     display: flex;
-
+    /* margin-right: 20px; */
 }
 
 input { 
@@ -58,12 +58,26 @@ input {
     margin-bottom: 30px;
     margin-top: 15px;
     width: 80%;
-    height: auto;
+    height: 60vh;
     padding: 5px;
     padding-bottom: 15px;
     border-radius: 2px;
     background-color: #ffffff;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
+}
+
+.profile-select-box {
+    height: 20%;;
+}
+
+.all-profile-options {
+    margin: auto;
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 35vh;
 }
 
 
@@ -80,18 +94,17 @@ input {
 .img-name-profile {
     display: flex;
     align-items: center;
-    margin: auto;
-    margin-left: 20px;
+    /* margin: auto; */
 }
 
 .btns {
     display: flex;
-    margin: auto;
-    margin-right: 20px;
+    flex-direction: row;
 }
 
 .user-info-profile { 
     height: 140px;
+    justify-content: space-around;
 
 }
 
@@ -109,14 +122,16 @@ input {
 .profile-title { 
     margin-bottom: 0px;
     margin-top: 0px;
+    text-align: left;
 }
 
 .profile-select-box {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     /* width: 50%; */
     height: 17%;
-    justify-content: flex-start;
-    align-items: center;
+    margin: 2px 15px;
 }
 
 .all-profile-options {
@@ -126,9 +141,18 @@ input {
     margin-top: 20px;
     padding: 10px 6px;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
     flex-wrap: wrap;
+    justify-content: flex-start;
 }
+
+input {
+    /* box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2); */
+    border: 1px solid #FF9770;
+    border-radius: 2px; 
+    height: 22px;
+    font-size: 14px;
+    margin-left: 4px;
+  }
 
 }

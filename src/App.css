@@ -3,15 +3,6 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-button.swal2-popup .swal2-confirm.swal2-styled {
-  background-color: #FF9770;
-
-}
-button.swal2-popup .swal2-styled.swal2-cancel {
-  color: #303030;
-}
-
-
 a {
   text-decoration: none;
 }
@@ -30,6 +21,13 @@ button:focus {
 
 button:hover {
   cursor: pointer;
+  transform: scale(1.1,1.1);
+  transition: transform 0.4s;
+  transition-timing-function: ease-in-out;
+}
+
+button:active {
+  opacity: 0.9;
 }
 
 input:focus {
@@ -38,14 +36,20 @@ input:focus {
   background-color: rgba(255, 150, 112, 0.3);
 }
 
+input:hover {
+  background-color: rgba(255, 150, 112, 0.3);  
+  transform: scale(1.1,1.1);
+  transition: transform 0.6s;
+  transition-timing-function: ease-in-out;
+}
+
 input {
   /* box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2); */
   border: 1px solid #FF9770;
   border-radius: 2px; 
   height: 22px;
-  margin: 10px;
   font-size: 14px;
-
+  margin-left: 4px;
 }
 
 select:focus {
@@ -54,8 +58,11 @@ select:focus {
 }
 
 select:hover {
-  background-color: #e9e5d96b;
+  background-color: rgba(255, 150, 112, 0.3);  
   cursor: pointer;
+  transform: scale(1.1,1.1);
+  transition: transform 0.6s;
+  transition-timing-function: ease-in-out;
 }
 
 option:hover {
