@@ -15,7 +15,6 @@ const express = require('express')
     let {
         SECRET,
         CONNECTION_STRING,
-        ENVIRONMENT
     } = process.env
     
     
@@ -32,17 +31,17 @@ const express = require('express')
     }))
 
      //to disable auth0 during production
-     app.use((req, res, next) => {
-        if(ENVIRONMENT === 'dev') {
-            req.app.get('db').set_data().then(userData => {
-                req.session.user = userData[0]
+    //  app.use((req, res, next) => {
+    //     if(ENVIRONMENT === 'dev') {
+    //         req.app.get('db').set_data().then(userData => {
+    //             req.session.user = userData[0]
                 
-                next()
-            })    
-        } else {
-            next();
-        }    
-        })
+    //             next()
+    //         })    
+    //     } else {
+    //         next();
+    //     }    
+    //     })
 
 
     //Friend endpoints

@@ -4,9 +4,13 @@
     border: 1px solid #ccc3c3;
     font-family: 'Open Sans', sans-serif;
     padding: 6px 18px;
-    /* margin: 10px; */
-    /* margin-top: 15px; */
+    margin-top: 15px;
     margin-left: 20px;
+}
+
+.name-edit-box {
+    display: flex;
+    flex-direction: row;
 }
 
 .dash-content {
@@ -23,7 +27,7 @@
 }
 
 .current-user-img {
-    height: 55px;
+    height: 75px;
     width: auto;
     align-items: flex-start;
     border: 2px solid #FF9770;
@@ -47,22 +51,22 @@ p.welcome-msg {
     display: flex;
     align-items: center;
     border-radius: 2px;
-        background-color: #ffffff;
-        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
 
 }
 .welcome-msg::-webkit-scrollbar { width: 0 !important }
 
 .user-info {
     display: flex;
-    height: 70px;
+    height: 90px;
     width: 90%;    
     margin-top: 20px;
     padding-top: 10px;
     padding: 5px;
     border-radius: 2px;
-        background-color: #ffffff;
-        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
 
 }
 
@@ -85,22 +89,23 @@ p.welcome-msg {
     }
 
     p.welcome-msg {
-        /* background-color: #FF9770; */
         background: linear-gradient(97deg, #FF7A6E, #FF9770);
-
     }
 
 }
 
 @media all and (min-width: 920px) {
     
-    .edit-btn {
-        font-size: 14px;
-        margin-top: 95px;
-        width: max-content;
-        position: relative;
-        right: 140px;
-    }
+.edit-btn {
+    font-size: 14px;
+    width: max-content;
+    margin: 0;
+}
+
+.name-edit-box {
+    display: flex;
+    flex-direction: column;
+}
 
  
 .profile-box {
@@ -110,7 +115,6 @@ p.welcome-msg {
     margin: auto;
     margin-top: 35px;
     width: 80%;
-
 }
 
 .current-user-img {
@@ -140,7 +144,6 @@ p.welcome-msg {
     width: 40%;
     margin-right: 20px;
     padding: 10px 0px;
-    /* justify-content: space-evenly; */
 }
 
 .rec-header {
@@ -154,10 +157,6 @@ p.welcome-msg {
     justify-content: flex-start;
     font-size: 28px;
 }
-/* 
-.rec-friends-select {
-    margin-left: 10px;
-} */
 
 .rec-filter {
     display: flex;

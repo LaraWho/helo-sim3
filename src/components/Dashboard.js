@@ -189,13 +189,15 @@ export default class Dashboard extends Component {
                         <img className="current-user-img" 
                             src={this.state.currentUser.user_img} 
                             alt="user avatar"/>
-                        <h1 className="dash-name">
-                            {this.state.currentUser.first_name} <br/>
-                            {this.state.currentUser.last_name}
-                        </h1>
-                        <div className="edit-btn-box">
-                            <Link to="/Profile"><button className="edit-btn">Edit Profile</button></Link>
+
+                        <div className="name-edit-box">
+                            <h1 className="dash-name">
+                                {this.state.currentUser.first_name} <br/>
+                                {this.state.currentUser.last_name}
+                            </h1>
+                                <Link to="/Profile"><button className="edit-btn">Edit Profile</button></Link>
                         </div>
+                        
                     </div>
                     <p className="welcome-msg">Welcome to Helo! Find recommended friends based on your 
                         similarities, and even search for them by name. The more you

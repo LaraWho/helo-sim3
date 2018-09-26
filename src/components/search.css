@@ -18,24 +18,19 @@
     margin: auto; 
     width: stretch;
     bottom: 0;
-    /* background: radial-gradient(circle at 50% -46%, #FF9770, #FF7A6E); */
 }
 
 @media all and (min-width: 920px) {
-    .search-bar {
-        margin-top: 30px;
-    }
+.search-bar {
+    margin-top: 30px;
+}
 
-    .page-btns {
-        font-size: 18px;
-    }
+.page-btns {
+    font-size: 18px;
+}
 
 .page-btns-box {
     position: fixed;
-
 }
 
-
-    
-    
-    }
+}
