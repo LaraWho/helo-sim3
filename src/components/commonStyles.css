@@ -38,20 +38,20 @@
     margin-top: 10px;
     margin-bottom: 20px;
     background-color: #ffffff;
-    /* background: linear-gradient(128deg, rgba(247, 216, 159, 0.1), rgba(255, 255, 255, 0.2)); */
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
 }
 
 .user-img {
-    height: 80px;
-    width: auto;
+    height: auto;
+    width: 90px;
     align-items: flex-start;
     margin: 5px;
+    margin: auto;
 }
 
 .user-name {
     margin: 10px;
-    text-align: left;
+    text-align: center;
 }
 
 .add-f-btn {
@@ -91,12 +91,12 @@
     .add-f-btn {
         margin: 0px;
         margin-left: 0px;
-        margin-right: 5px;
+        margin-right: 10px;
         padding: 8px 18px;
     }
     .remove-f-btn {
         margin: 0px;
-        margin-right: 5px;
+        margin-right: 10px;
         padding: 8px 8px;
 
     }
@@ -121,13 +121,16 @@
 
     .user-name {
         margin: 8px;
-        margin-left: 2px;
+        margin-left: 8px;
         width: 40%;
+        text-align: left;
+
     }
 
     .user-list {
         display: flex;
-        width: 40%;
+        width: 42%;
+        height: 120px;        
         justify-content: flex-start;
         flex-direction: row;
         align-items: center;
@@ -142,9 +145,10 @@
     }
 
     .user-img {
-        height: 100%;
-        width: 80px;
+        height: 120px;
+        width: auto;
         margin-left: 0px;
+        margin-right: 10px;
     }
 
 

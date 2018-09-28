@@ -17,15 +17,16 @@ module.exports = {
         let userRes = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token=${tokenRes.data.access_token}`)
         
         const db = req.app.get('db')
-        const { given_name, family_name, sub } = userRes.data;
-    
+        const { given_name, family_name, sub, picture } = userRes.data;
+
         let foundUser = await db.find_user( [sub] )
             if(foundUser[0]) {
                 req.session.user = foundUser[0];
                 
             } else {
-                let createdUser = await db.create_user( [ given_name, family_name, sub ] )
+                let createdUser = await db.create_user( [ given_name, family_name, sub, picture ] )
                 req.session.user = createdUser
+
             }
             res.redirect('/#/dashboard');
     },

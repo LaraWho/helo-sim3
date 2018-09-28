@@ -33,6 +33,7 @@
     border: 2px solid #FF9770;
     margin: 5px;
     margin-left: 10px;
+    margin-right: 5px;
 }
 
 .dash-name {
@@ -119,7 +120,7 @@ p.welcome-msg {
 
 .current-user-img {
     height: 120px;
-    width: 100px;
+    width: auto;
     margin-right: 12px;
 }
 

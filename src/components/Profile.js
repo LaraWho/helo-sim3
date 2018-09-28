@@ -223,6 +223,9 @@ export default class Profile extends Component {
                         <option value="Brown">Brown</option>
                         <option value="Blonde">Blonde</option>
                         <option value="Red">Red</option>
+                        <option value="Silver">Silver</option>
+                        <option value="Purple">Purple</option>
+                        <option value="Pink">Pink</option>
                         <option value="Rainbow">Rainbow</option>
                     </select>
                 </div>
@@ -234,16 +237,21 @@ export default class Profile extends Component {
                         <option value="Brown">Brown</option>
                         <option value="Blue">Blue</option>
                         <option value="Green">Green</option>
+                        <option value="Grey">Grey</option>
+                        <option value="Purple">Indigo</option>
+                        <option value="Rainbow">Rainbow</option>
+
                     </select>
                 </div>
                 <div className="profile-select-box">
                     <p className="profile-title">Hobby</p>
                     <select value={this.state.hobby} onChange={this.updateHobby}>
                         <option value="select">Select...</option>                                
-                        <option value="Reading">Reading</option>
                         <option value="Photography">Photography</option>
+                        <option value="Travel">Travel</option>
                         <option value="Coding">Coding</option>
                         <option value="Hiking">Hiking</option>
+                        <option value="Reading">Reading</option>
                         <option value="Cycling">Cycling</option>
                     </select>
                 </div>
