@@ -74,16 +74,6 @@
     font-weight: 400;    
 }
 
-.page-btns {
-    margin: 5px;
-    margin-bottom: 15px;
-    font-family: 'Open Sans', sans-serif;
-    /* box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2); */
-    background: none;
-    color: #ffffff;
-    font-size: 14px;
-}
-
 
 @media all and (min-width: 920px) {
 
@@ -141,14 +131,13 @@
     .all-users {
         width: 80%;
         padding: 20px 0px;
-        margin-bottom: 100px;
+        margin-bottom: 40px;
     }
 
     .user-img {
         height: 120px;
         width: auto;
         margin-left: 0px;
-        margin-right: 10px;
     }
 
 

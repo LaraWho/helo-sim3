@@ -8,7 +8,7 @@ set first_name = $1,
     birth_day = $7, 
     birth_month = $8, 
     birth_year = $9
-where user_id = $10;
-
+where user_id = $10
+returning *;
 -- select * from helo_users 
 -- where user_id = $10;

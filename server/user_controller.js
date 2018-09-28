@@ -2,7 +2,6 @@ module.exports = {
 
     getCurrentUser: (req, res) => {
         res.send(req.session.user)
-
     },
 
     updateProfile: (req, res) => {
@@ -12,6 +11,7 @@ module.exports = {
 
         dbInstance.update_user([ first_name, last_name, gender, hair_colour, eye_colour, hobby, birth_day, birth_month, birth_year, user_id ])
         .then(response => {
+            req.session.user = response[0]
             res.status(200).send(response) 
         }).catch( err => {
             console.log(err)
@@ -36,7 +36,7 @@ module.exports = {
         const { user_id } = req.session.user;
         let { page } = req.params;
 
-            dbInstance.limit_view([user_id, page])
+        dbInstance.limit_view([user_id, page])
             .then(response => {
                 res.status(200).send(response) 
         }).catch( err => {

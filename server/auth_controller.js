@@ -25,7 +25,7 @@ module.exports = {
                 
             } else {
                 let createdUser = await db.create_user( [ given_name, family_name, sub, picture ] )
-                req.session.user = createdUser
+                req.session.user = createdUser[0]
 
             }
             res.redirect('/#/dashboard');

@@ -20,17 +20,30 @@
     bottom: 0;
 }
 
+.page-btns {
+    margin: 5px;
+    margin-bottom: 15px;
+    font-family: 'Open Sans', sans-serif;
+    background: none;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+
 @media all and (min-width: 920px) {
 .search-bar {
     margin-top: 30px;
 }
 
 .page-btns {
-    font-size: 18px;
+    font-size: 22px;
+    padding-top: 5px;
 }
 
 .page-btns-box {
-    position: fixed;
+    /* position: fixed; */
+    bottom: 0;
+
 }
 
 }
