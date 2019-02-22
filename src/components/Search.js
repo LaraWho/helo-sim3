@@ -45,7 +45,7 @@ export default class Search extends Component {
     }
 
     nextPage = (page) => {
-        let offset = page * 8 - 8
+        let offset = page * 6 - 6
 
         axios.get(`/api/user/friend/${offset}`)
         .then(res => {

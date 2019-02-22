@@ -21,7 +21,6 @@ module.exports = {
     getAllUsers: (req, res) => {
         const dbInstance = req.app.get('db');
         const { user_id } = req.session.user;
-
         
         dbInstance.view_all([user_id])
         .then(response => {
